@@ -4,6 +4,60 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Good Dog Roasters — Be Good. Do Good. Taste Good.</title>
+
+<!-- SEO -->
+<meta name="description" content="Artisan coffee hand-roasted in Palm Beach County, FL. Limited small-batch drops via exclusive access + curated everyday coffees. Fresh within 48 hours of roasting.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://good-dog-roasters.com/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Good Dog Roasters">
+<meta property="og:title" content="Good Dog Roasters — Be Good. Do Good. Taste Good.">
+<meta property="og:description" content="Artisan coffee hand-roasted in Palm Beach County. Limited drops + curated everyday coffees. Fresh within 48 hours of roasting.">
+<meta property="og:url" content="https://good-dog-roasters.com/">
+<meta property="og:image" content="https://good-dog-roasters.com/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Good Dog Roasters — Be Good. Do Good. Taste Good.">
+<meta name="twitter:description" content="Artisan coffee hand-roasted in Palm Beach County. Limited drops + curated everyday coffees.">
+<meta name="twitter:image" content="https://good-dog-roasters.com/assets/og-image.jpg">
+
+<!-- JSON-LD: Local Business -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Good Dog Roasters",
+  "description": "Artisan coffee hand-roasted in small batches in Palm Beach County, FL. Limited-drop exclusive roasts and curated everyday coffees.",
+  "url": "https://good-dog-roasters.com",
+  "logo": "https://good-dog-roasters.com/assets/Good Dog Graphic.svg",
+  "image": "https://good-dog-roasters.com/assets/og-image.jpg",
+  "email": "hello@good-dog-roasters.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Palm Beach County",
+    "addressRegion": "FL",
+    "addressCountry": "US"
+  },
+  "priceRange": "$$",
+  "servesCuisine": "Coffee",
+  "sameAs": ["https://good-dog-roasters.myshopify.com"]
+}
+</script>
+
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="manifest" href="assets/site.webmanifest">
+<meta name="theme-color" content="#2C1810">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -11,7 +65,12 @@
 </head>
 <body>
 
-<nav id="nav">
+<!-- GTM noscript fallback -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KX2TVDV7" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<nav id="nav" aria-label="Main navigation">
   <a href="#" class="n-logo">Good Dog Roasters</a>
   <div class="n-links">
     <a href="#story">Our Story</a>
@@ -21,11 +80,16 @@
   </div>
 </nav>
 
+<main id="main">
+
 <section class="hero" id="hero-section">
-  <video class="hero-video" autoplay muted loop playsinline>
+  <video class="hero-video" autoplay muted loop playsinline aria-hidden="true">
     <source src="assets/header.mp4" type="video/mp4">
   </video>
-  <div class="hero-overlay"></div>
+  <div class="hero-overlay" aria-hidden="true"></div>
+  <button class="hero-pause" id="hero-pause-btn" aria-label="Pause background video" onclick="toggleHeroVideo()">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" width="14" height="14"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+  </button>
   <div class="hero-content">
     <img src="assets/Good Dog Graphic.svg" alt="Good Dog Roasters" class="hero-logo">
     <h1>Good Dog<br><em>Roasters</em></h1>
@@ -39,7 +103,7 @@
   <div class="scroll-hint"><span>Scroll</span><div></div></div>
 </section>
 
-<div class="marq"><div class="marq-inner">
+<div class="marq" aria-hidden="true"><div class="marq-inner">
   <span>Artisan Roasted</span><div class="marq-dot"></div><span>Palm Beach County</span><div class="marq-dot"></div><span>Small Batch</span><div class="marq-dot"></div><span>Expert Curated</span><div class="marq-dot"></div><span>Limited Drops</span><div class="marq-dot"></div><span>Ethically Sourced</span><div class="marq-dot"></div><span>Always Fresh</span><div class="marq-dot"></div><span>Good Dog Approved</span><div class="marq-dot"></div>
   <span>Artisan Roasted</span><div class="marq-dot"></div><span>Palm Beach County</span><div class="marq-dot"></div><span>Small Batch</span><div class="marq-dot"></div><span>Expert Curated</span><div class="marq-dot"></div><span>Limited Drops</span><div class="marq-dot"></div><span>Ethically Sourced</span><div class="marq-dot"></div><span>Always Fresh</span><div class="marq-dot"></div><span>Good Dog Approved</span><div class="marq-dot"></div>
 </div></div>
@@ -47,13 +111,13 @@
 <div class="worlds">
   <div class="w-card w-artisan rv">
     <p class="s-label">Made Here</p>
-    <h3>The Artisan<br>Collection</h3>
+    <h2>The Artisan<br>Collection</h2>
     <p>Roasted by hand in Palm Beach County in small batches, released as limited drops. This is the coffee we make ourselves — every temperature curve, every timing decision, every bag. Join the list for exclusive access.</p>
     <a href="#waitlist" class="btn btn-gold">Join the Drop List &rarr;</a>
   </div>
   <div class="w-card w-every rv d1">
     <p class="s-label">Curated for You</p>
-    <h3>The Everyday<br>Collection</h3>
+    <h2>The Everyday<br>Collection</h2>
     <p>We don't roast every bag — but we stand behind every one. Our everyday lineup is handpicked from top-tier roasters for quality and consistency. Always in stock, always Good Dog approved. Order anytime or subscribe.</p>
     <a href="https://good-dog-roasters.myshopify.com" target="_blank" class="btn btn-sage">Shop Coffee &rarr;</a>
   </div>
@@ -81,13 +145,62 @@
   </div>
 </div></div>
 
+<section class="origin">
+  <div class="origin-intro rv">
+    <p class="s-label origin-label">The Origin</p>
+    <h2 class="origin-headline">Most coffee you've bought<br><em>peaked before you opened it.</em></h2>
+    <p class="origin-body">The grocery store doesn't sell you fresh coffee. It sells you coffee with a long shelf life — roasted months ago, packaged to last years, designed to survive logistics. You've been covering up the bitterness with cream and sweetener for so long, you forgot what coffee actually tastes like. That realization is why Good Dog Roasters exists.</p>
+  </div>
+  <div class="origin-cost rv">
+    <div class="origin-cost-side">
+      <div class="origin-cost-num">$1,800<span>/yr</span></div>
+      <div class="origin-cost-label">Daily café habit</div>
+      <div class="origin-cost-sub">One specialty coffee per day at average café prices — ordered fast, consumed faster</div>
+    </div>
+    <div class="origin-cost-vs" aria-hidden="true">vs</div>
+    <div class="origin-cost-side origin-cost-right">
+      <div class="origin-cost-num origin-cost-good">$300<span>/yr</span></div>
+      <div class="origin-cost-label">Good Dog at home, daily</div>
+      <div class="origin-cost-sub">Made deliberately, with beans you actually chose, in a moment you actually keep</div>
+    </div>
+  </div>
+  <p class="origin-cite rv">Café estimate: $5/cup avg × 365 days (NCA 2024 pricing data) &nbsp;·&nbsp; Home estimate: $24/bag ÷ 30 cups × 365 days</p>
+
+  <div class="origin-grid">
+    <div class="origin-card rv d1">
+      <span class="origin-num">01</span>
+      <h3>Expiration date<br>is not a roast date.</h3>
+      <p>Grocery store coffee is stamped with how long it can sit on a shelf — sometimes two years out. That date hides when it was roasted, how long it traveled, and how much flavor is already gone. Freshness has a window. It closes fast.</p>
+    </div>
+    <div class="origin-card rv d2">
+      <span class="origin-num">02</span>
+      <h3>Bitter isn't bold.<br>It's a burn.</h3>
+      <p>Over-roasting destroys the natural sugars and aromatics that make coffee complex. What's left is carbon. The industry called it "dark roast" and told you to add cream. We solved it at the source: roast shorter, roast better, taste more.</p>
+    </div>
+    <div class="origin-card rv d3">
+      <span class="origin-num">03</span>
+      <h3>Beans fall flat<br>before you open them.</h3>
+      <p>Whole beans lose their best qualities within two to four weeks of roasting. Most grocery store coffee was roasted six to twelve months before you bought it. We ship our artisan roasts within 48 hours. That gap isn't a detail — it's everything.</p>
+    </div>
+    <div class="origin-card rv d4">
+      <span class="origin-num">04</span>
+      <h3>Great coffee isn't<br>meant to be rushed.</h3>
+      <p>Watch a dog settle in for a nap and you'll notice they commit to it completely. Your morning cup deserves the same. Not a drive-through transaction. Not a to-go lid. A few quiet minutes where the coffee is the point — and good enough to justify that.</p>
+    </div>
+  </div>
+  <div class="origin-cta rv">
+    <a href="#waitlist" class="btn btn-gold">Get It Fresh — Join the Drop List &rarr;</a>
+  </div>
+</section>
+
 <section class="waitlist" id="waitlist"><div class="rv">
   <p class="s-label">Stay in the Loop</p>
   <h2 class="s-title">Good coffee, delivered to your inbox.</h2>
   <p class="s-body" style="margin:0 auto 3.5rem;text-align:center">New artisan drops, curated finds, and behind-the-scenes from the roast floor — straight to your inbox. No noise, just coffee.</p>
   <form class="wl-form" name="newsletter" data-netlify="true" onsubmit="handleNewsletter(event)">
     <input type="hidden" name="form-name" value="newsletter">
-    <input type="email" name="email" placeholder="Your email address" required>
+    <label for="newsletter-email" class="sr-only">Email address</label>
+    <input type="email" id="newsletter-email" name="email" placeholder="Your email address" required>
     <button type="submit">Subscribe</button>
   </form>
   <p class="wl-note">No spam. Unsubscribe anytime.</p>
@@ -110,7 +223,7 @@
         <div class="p-img">
           <img :src="p.image" :alt="p.title" loading="lazy" onerror="this.style.display='none'">
         </div>
-        <h4 x-text="p.title"></h4>
+        <h3 x-text="p.title"></h3>
         <span class="p-price" x-text="p.price ? 'From $' + parseFloat(p.price).toFixed(2) : 'Shop Now'"></span>
       </a>
     </div>
@@ -120,16 +233,31 @@
 <footer>
   <div class="f-top">
     <div class="f-brand"><span class="n-logo">Good Dog Roasters</span><p>Artisan roasts made in Palm Beach County. Everyday coffees curated to the same standard. Be Good. Do Good. Taste Good.</p></div>
-    <div class="f-col"><h5>Shop</h5><a href="https://good-dog-roasters.myshopify.com/collections/single-origin" target="_blank">Single Origin</a><a href="https://good-dog-roasters.myshopify.com/collections/blends" target="_blank">Blends</a><a href="https://good-dog-roasters.myshopify.com/collections/flavored" target="_blank">Flavored</a><a href="https://good-dog-roasters.myshopify.com/collections/sample-packs" target="_blank">Sample Packs</a><a href="https://good-dog-roasters.myshopify.com/collections/tea" target="_blank">Tea</a></div>
-    <div class="f-col"><h5>Merch</h5><a href="https://good-dog-roasters.myshopify.com/collections/tees" target="_blank">Tees</a><a href="https://good-dog-roasters.myshopify.com/collections/hoodies-sweatshirts" target="_blank">Hoodies</a><a href="https://good-dog-roasters.myshopify.com/collections/hats-caps" target="_blank">Hats</a><a href="https://good-dog-roasters.myshopify.com/collections/mugs" target="_blank">Mugs</a></div>
-    <div class="f-col"><h5>Company</h5><a href="#story">Our Story</a><a href="#waitlist">Newsletter</a><a href="https://good-dog-roasters.myshopify.com/pages/contact" target="_blank">Contact</a></div>
+    <div class="f-col"><h4>Shop</h4><a href="https://good-dog-roasters.myshopify.com/collections/single-origin" target="_blank">Single Origin</a><a href="https://good-dog-roasters.myshopify.com/collections/blends" target="_blank">Blends</a><a href="https://good-dog-roasters.myshopify.com/collections/flavored" target="_blank">Flavored</a><a href="https://good-dog-roasters.myshopify.com/collections/sample-packs" target="_blank">Sample Packs</a><a href="https://good-dog-roasters.myshopify.com/collections/tea" target="_blank">Tea</a></div>
+    <div class="f-col"><h4>Merch</h4><a href="https://good-dog-roasters.myshopify.com/collections/tees" target="_blank">Tees</a><a href="https://good-dog-roasters.myshopify.com/collections/hoodies-sweatshirts" target="_blank">Hoodies</a><a href="https://good-dog-roasters.myshopify.com/collections/hats-caps" target="_blank">Hats</a><a href="https://good-dog-roasters.myshopify.com/collections/mugs" target="_blank">Mugs</a></div>
+    <div class="f-col"><h4>Company</h4><a href="#story">Our Story</a><a href="#waitlist">Newsletter</a><a href="https://good-dog-roasters.myshopify.com/pages/contact" target="_blank">Contact</a></div>
   </div>
-  <div class="f-bottom"><span>2026 Good Dog Roasters. All rights reserved.</span><span><a href="privacy.html" style="color:rgba(246,243,241,.4);text-decoration:none;transition:color .3s">Privacy Policy</a> &nbsp;&middot;&nbsp; Roasted with love in Palm Beach County.</span></div>
+  <div class="f-bottom"><span>2026 Good Dog Roasters. All rights reserved.</span><span><a href="accessibility.html" class="f-privacy">Accessibility</a> &nbsp;&middot;&nbsp; <a href="privacy.html" class="f-privacy">Privacy Policy</a> &nbsp;&middot;&nbsp; <button class="f-cookie-prefs" onclick="reopenCookieBanner()">Cookie Preferences</button> &nbsp;&middot;&nbsp; Roasted with love in Palm Beach County.</span></div>
 </footer>
+
+</main>
 
 <script>
 const n=document.getElementById('nav');
 window.addEventListener('scroll',()=>n.classList.toggle('scrolled',window.scrollY>50),{passive:true});
+
+function toggleHeroVideo(){
+  const v=document.querySelector('.hero-video'),btn=document.getElementById('hero-pause-btn');
+  if(v.paused){
+    v.play();
+    btn.setAttribute('aria-label','Pause background video');
+    btn.innerHTML='<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" width="14" height="14"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
+  } else {
+    v.pause();
+    btn.setAttribute('aria-label','Play background video');
+    btn.innerHTML='<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" width="14" height="14"><polygon points="5,3 19,12 5,21"/></svg>';
+  }
+}
 const obs=new IntersectionObserver(e=>{e.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v')})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
 
@@ -185,6 +313,48 @@ function shopifyProducts(){
     }
   }
 }
+</script>
+
+
+<!-- Cookie Consent Banner -->
+<div id="cookie-banner" class="cookie-banner" role="region" aria-label="Cookie consent" aria-live="polite">
+  <p class="cookie-text">We use cookies for basic site functionality. When enabled, analytics help us improve your experience. Your data is never sold. <a href="privacy.html">Privacy Policy</a></p>
+  <div class="cookie-actions">
+    <button class="cookie-btn cookie-decline" onclick="setCookieConsent(false)">Decline</button>
+    <button class="cookie-btn cookie-accept" onclick="setCookieConsent(true)">Accept</button>
+  </div>
+</div>
+
+<script>
+const GTM_ID = 'GTM-KX2TVDV7';
+
+function loadGTM() {
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
+  const s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtm.js?id=' + GTM_ID;
+  document.head.appendChild(s);
+}
+
+function setCookieConsent(accepted) {
+  localStorage.setItem('gdr_cookie_consent', accepted ? 'accepted' : 'declined');
+  document.getElementById('cookie-banner').classList.remove('cookie-visible');
+  if (accepted) loadGTM();
+}
+
+function reopenCookieBanner() {
+  localStorage.removeItem('gdr_cookie_consent');
+  document.getElementById('cookie-banner').classList.add('cookie-visible');
+}
+
+(function() {
+  const consent = localStorage.getItem('gdr_cookie_consent');
+  if (consent === 'accepted') { loadGTM(); return; }
+  if (!consent) {
+    setTimeout(() => document.getElementById('cookie-banner').classList.add('cookie-visible'), 1500);
+  }
+})();
 </script>
 
 </body>
