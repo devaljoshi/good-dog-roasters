@@ -2,31 +2,59 @@
  * GOOD DOG ROASTERS — DROP CONFIG
  * Update this file for every new drop. The drops page reads from here automatically.
  * ─────────────────────────────────────────────────────────────────────────────
+ *
+ * HOW THE DROP SYSTEM WORKS (read this before each drop):
+ *
+ * 1. REGISTRATION WINDOW  (registrationOpens → registrationCloses)
+ *    Anyone can register their interest — free, no commitment.
+ *    A Netlify form captures name + email + dog name + timestamp.
+ *    Send newsletter announcing registration is open.
+ *
+ * 2. SELECTION  (registrationCloses → purchaseOpens)
+ *    You pick winners from the Netlify form submissions.
+ *    Mix of loyal buyers (check past Shopify orders) + random draw.
+ *    Email winners the drops.html URL. Keep the Shopify product unlisted
+ *    until purchaseOpens so only winners can find and buy it.
+ *
+ * 3. PURCHASE WINDOW  (purchaseOpens → purchaseCloses)
+ *    Winners claim their bag via the Shopify link.
+ *    Shopify handles checkout, payment, labels, and shipping notifications.
+ *    Set the Shopify product to active/published right at purchaseOpens.
+ *
+ * 4. CLOSED  (after purchaseCloses)
+ *    Drop is over. Move current → archive below. Start next drop config.
  */
 
 const DROP_CONFIG = {
 
   // ── CURRENT DROP ──────────────────────────────────────────────────────────
   current: {
-    number:      '01',
-    name:        'Ethiopia',
-    nameAccent:  'Yirgacheffe',               // shown in italic gold
-    subtitle:    'Hand Roasted · Palm Beach County · Small Batch',
-    opens:       new Date('2026-04-22T00:00:00'),  // PREVIEW MODE — set back to real date when done
-    closes:      new Date('2026-04-22T23:59:59'),  // PREVIEW MODE — set back to real date when done
-    shopifyUrl:  '#',                              // ← paste Shopify product URL when ready
+    number:     '01',
+    name:       'Ethiopia',
+    nameAccent: 'Yirgacheffe',               // shown in italic gold
+    subtitle:   'Hand Roasted · Palm Beach County · Small Batch',
+    bagCount:   25,                          // how many bags in this drop (shown on page)
+
+    // ── DROP TIMELINE ──────────────────────────────────────────────────────
+    // All 4 dates required. Keep them in chronological order.
+    registrationOpens:  new Date('2026-04-22T00:00:00'), // PREVIEW — set real date
+    registrationCloses: new Date('2026-04-22T06:00:00'), // PREVIEW — set real date
+    purchaseOpens:      new Date('2026-04-22T07:00:00'), // PREVIEW — set real date
+    purchaseCloses:     new Date('2026-04-22T23:59:59'), // PREVIEW — set real date
+
+    shopifyUrl: '#', // ← paste Shopify product URL before purchaseOpens
 
     // Coffee Stats
-    origin:      'Ethiopia',
-    region:      'Yirgacheffe',
-    farm:        '{{FARM_OR_COOPERATIVE_NAME}}',
-    altitude:    '{{ALTITUDE}} masl',
-    varietal:    '{{VARIETAL}}',
-    process:     '{{WASHED / NATURAL / HONEY}}',
-    roastLevel:  '{{LIGHT / LIGHT-MEDIUM / MEDIUM}}',
-    roastDate:   '{{MONTH DAY, YEAR}}',
-    bagSize:     '12 oz / 340g',
-    price:       '${{PRICE}}',
+    origin:     'Ethiopia',
+    region:     'Yirgacheffe',
+    farm:       '{{FARM_OR_COOPERATIVE_NAME}}',
+    altitude:   '{{ALTITUDE}} masl',
+    varietal:   '{{VARIETAL}}',
+    process:    '{{WASHED / NATURAL / HONEY}}',
+    roastLevel: '{{LIGHT / LIGHT-MEDIUM / MEDIUM}}',
+    roastDate:  '{{MONTH DAY, YEAR}}',
+    bagSize:    '12 oz / 340g',
+    price:      '${{PRICE}}',
 
     // Tasting Notes (shown as tags)
     tastingNotes: [
@@ -43,17 +71,16 @@ const DROP_CONFIG = {
     ],
 
     // Featured Good Dog Story
-    dogName:        '{{DOG_NAME}}',
-    storyQuote:     '{{The customer\'s story — 2-3 sentences in their own voice.}}',
-    storyAuthor:    '{{First Name Last Name}}',
-    storyCity:      '{{City, FL}}',
+    dogName:         '{{DOG_NAME}}',
+    storyQuote:      '{{The customer\'s story — 2-3 sentences in their own voice.}}',
+    storyAuthor:     '{{First Name Last Name}}',
+    storyCity:       '{{City, FL}}',
     illustrationSrc: '', // e.g. 'assets/drop-01-illustration.jpg' — leave empty until ready
   },
 
   // ── ARCHIVE ───────────────────────────────────────────────────────────────
-  // Add a new object here each time a drop sells out.
+  // When a drop closes, copy current{} values here and start fresh above.
   archive: [
-    // Example — uncomment and fill in when Drop 01 sells out:
     // {
     //   number:      '01',
     //   name:        'Ethiopia Yirgacheffe',

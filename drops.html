@@ -45,8 +45,9 @@
     <h1 class="drop-hero-name" id="js-hero-name"></h1>
     <p class="drop-roast-line" id="js-roast-line"></p>
 
-    <!-- COUNTDOWN -->
+    <!-- STATE 1: COUNTDOWN TO REGISTRATION -->
     <div id="state-countdown">
+      <p class="drop-reg-intro" id="js-reg-intro"></p>
       <div class="countdown-grid">
         <div class="countdown-unit"><span class="cd-num" id="cd-days">--</span><span class="cd-label">Days</span></div>
         <div class="countdown-sep" aria-hidden="true">·</div>
@@ -56,25 +57,66 @@
         <div class="countdown-sep" aria-hidden="true">·</div>
         <div class="countdown-unit"><span class="cd-num" id="cd-secs">--</span><span class="cd-label">Seconds</span></div>
       </div>
-      <p class="drop-opens-note">Opens <span class="drop-opens-date" id="js-opens-date"></span> &nbsp;·&nbsp; Closes at midnight</p>
+      <p class="drop-opens-note">Registration opens <span class="drop-opens-date" id="js-reg-date"></span></p>
+      <p class="drop-opens-note" style="margin-top:.3rem">Join the newsletter to get notified &nbsp;·&nbsp; <a href="index.html#waitlist" class="drop-fl-link">Subscribe &rarr;</a></p>
       <p class="drop-fl-notice">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
         Artisan drops ship within Florida only. <a href="privacy.html#florida-shipping" class="drop-fl-link">Why?</a>
       </p>
     </div>
 
-    <!-- LIVE -->
+    <!-- STATE 2: REGISTRATION OPEN -->
+    <div id="state-registration" class="drop-live-state" style="display:none">
+      <div class="live-pill"><span class="live-dot" aria-hidden="true"></span>Registration Open</div>
+      <p class="drop-reg-body">This drop is limited to <strong id="js-bag-count"></strong> bags. Register below for a chance to claim one — it's free, no obligation. Winners are selected by a mix of loyalty and random draw and notified by email before the purchase window opens.</p>
+      <form class="drop-reg-form" name="drop-registration" data-netlify="true" netlify-honeypot="bot-field" id="drop-reg-form" onsubmit="handleRegForm(event)">
+        <input type="hidden" name="form-name" value="drop-registration">
+        <input type="hidden" name="drop-number" id="reg-drop-number">
+        <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
+        <div class="drop-reg-fields">
+          <div class="drop-reg-field">
+            <label for="reg-name">Your Name</label>
+            <input type="text" id="reg-name" name="name" placeholder="First and last name" required>
+          </div>
+          <div class="drop-reg-field">
+            <label for="reg-email">Email</label>
+            <input type="email" id="reg-email" name="email" placeholder="you@email.com" required>
+          </div>
+          <div class="drop-reg-field">
+            <label for="reg-dog">Your Dog's Name</label>
+            <input type="text" id="reg-dog" name="dog_name" placeholder="What do you call them?">
+          </div>
+        </div>
+        <button type="submit" class="drop-cta-btn" id="reg-submit-btn">Register for This Drop &rarr;</button>
+      </form>
+      <div id="reg-success" style="display:none;text-align:center">
+        <p class="drop-reg-body" style="color:var(--sage-deep);font-weight:600">You're registered. We'll email you before the purchase window opens.</p>
+      </div>
+      <p class="drop-fl-notice" style="margin-top:1.5rem">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        Artisan drops ship within Florida only. <a href="privacy.html#florida-shipping" class="drop-fl-link">Why?</a>
+      </p>
+    </div>
+
+    <!-- STATE 3: SELECTION IN PROGRESS -->
+    <div id="state-selection" class="drop-sold-state" style="display:none">
+      <div class="sold-badge">Selection in Progress</div>
+      <p class="drop-closes-note">Registration is closed. We're picking winners now — check your email. If you're selected, you'll receive a link to claim your bag before the purchase window opens.</p>
+      <a href="index.html#waitlist" class="btn btn-dark" style="margin-top:.5rem">Join the Newsletter for Future Drops</a>
+    </div>
+
+    <!-- STATE 4: PURCHASE WINDOW LIVE -->
     <div id="state-live" class="drop-live-state" style="display:none">
-      <div class="live-pill"><span class="live-dot" aria-hidden="true"></span>Live Now — Today Only</div>
+      <div class="live-pill"><span class="live-dot" aria-hidden="true"></span>Purchase Window Open</div>
       <a href="#" class="drop-cta-btn" id="js-buy-link">Claim Your Bag &rarr;</a>
-      <p class="drop-closes-note">This drop closes tonight at midnight. It won't reopen.</p>
+      <p class="drop-closes-note">Winners: this window closes at midnight. It won't reopen.</p>
       <p class="drop-fl-notice">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
         Artisan drops ship within Florida only. <a href="privacy.html#florida-shipping" class="drop-fl-link">Why?</a>
       </p>
     </div>
 
-    <!-- SOLD OUT -->
+    <!-- STATE 5: SOLD OUT / CLOSED -->
     <div id="state-sold" class="drop-sold-state" style="display:none">
       <div class="sold-badge" id="js-sold-badge"></div>
       <p class="drop-closes-note">Every bag from this drop found a home. Next drop coming soon.</p>
@@ -226,7 +268,9 @@ document.getElementById('js-bg-num').textContent         = D.number;
 document.getElementById('js-num-tag').textContent        = 'Drop #' + D.number;
 document.getElementById('js-hero-name').innerHTML        = D.name + '<br><em>' + D.nameAccent + '</em>';
 document.getElementById('js-roast-line').textContent     = D.subtitle;
-document.getElementById('js-opens-date').textContent     = formatDate(D.opens);
+document.getElementById('js-reg-date').textContent       = formatDate(D.registrationOpens);
+document.getElementById('js-bag-count').textContent      = D.bagCount + ' bags';
+document.getElementById('reg-drop-number').value         = 'Drop #' + D.number;
 document.getElementById('js-buy-link').href              = D.shopifyUrl;
 document.getElementById('js-sold-badge').textContent     = 'Drop #' + D.number + ' — Sold Out';
 
@@ -286,26 +330,39 @@ if(DROP_CONFIG.archive.length === 0){
   document.querySelectorAll('.archive-card.rv').forEach(el=>obs.observe(el));
 }
 
-// ── Drop state logic ────────────────────────────────────────────────────────
+// ── Drop state machine (5 states) ──────────────────────────────────────────
+function show(id, flex){
+  ['state-countdown','state-registration','state-selection','state-live','state-sold']
+    .forEach(s => document.getElementById(s).style.display = 'none');
+  document.getElementById(id).style.display = flex ? 'flex' : 'block';
+}
+
 function setDropState(){
   const now = new Date();
-  const countdown = document.getElementById('state-countdown');
-  const live      = document.getElementById('state-live');
-  const sold      = document.getElementById('state-sold');
-
-  if(now >= D.opens && now <= D.closes){
-    countdown.style.display='none'; live.style.display='flex'; sold.style.display='none';
-  } else if(now > D.closes){
-    countdown.style.display='none'; live.style.display='none'; sold.style.display='flex';
+  if(now >= D.purchaseOpens && now <= D.purchaseCloses){
+    // Purchase window live
+    show('state-live', true);
+  } else if(now > D.purchaseCloses){
+    // Drop closed / sold out
+    show('state-sold', true);
+  } else if(now >= D.registrationCloses && now < D.purchaseOpens){
+    // Selection in progress
+    show('state-selection', true);
+  } else if(now >= D.registrationOpens && now < D.registrationCloses){
+    // Registration open
+    show('state-registration', true);
+    document.getElementById('js-reg-intro').style.display = 'none';
   } else {
-    countdown.style.display='block'; live.style.display='none'; sold.style.display='none';
+    // Countdown to registration
+    show('state-countdown', false);
+    document.getElementById('js-reg-intro').textContent = 'Registration opens in:';
     startCountdown();
   }
 }
 
 function startCountdown(){
   function tick(){
-    const diff = D.opens - new Date();
+    const diff = D.registrationOpens - new Date();
     if(diff <= 0){ setDropState(); return; }
     document.getElementById('cd-days').textContent  = pad(Math.floor(diff/86400000));
     document.getElementById('cd-hours').textContent = pad(Math.floor((diff%86400000)/3600000));
@@ -313,10 +370,31 @@ function startCountdown(){
     document.getElementById('cd-secs').textContent  = pad(Math.floor((diff%60000)/1000));
   }
   tick();
-  setInterval(tick,1000);
+  setInterval(tick, 1000);
 }
 
 setDropState();
+
+// ── Registration form ───────────────────────────────────────────────────────
+function handleRegForm(e){
+  e.preventDefault();
+  const form = e.target, btn = document.getElementById('reg-submit-btn');
+  btn.textContent = 'Registering...';
+  btn.style.pointerEvents = 'none';
+  fetch('/', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+    body: new URLSearchParams(new FormData(form)).toString()
+  })
+  .then(() => {
+    form.style.display = 'none';
+    document.getElementById('reg-success').style.display = 'block';
+  })
+  .catch(() => {
+    btn.textContent = 'Try again';
+    btn.style.pointerEvents = 'auto';
+  });
+}
 
 // Story form — character counter + Netlify submission
 (function(){
