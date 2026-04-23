@@ -115,9 +115,9 @@
     <p>Roasted by hand in Palm Beach County in small batches, released as limited drops. This is the coffee we make ourselves — every temperature curve, every timing decision, every bag. Join the list for exclusive access.</p>
 
     <div class="artisan-drop-widget">
-      <!-- COUNTDOWN TO REGISTRATION -->
+      <!-- COUNTDOWN -->
       <div id="hw-countdown">
-        <p class="hw-drop-label">Drop #<span id="hw-drop-name"></span> — Registration opens in:</p>
+        <p class="hw-drop-label">Drop #<span id="hw-drop-name"></span> — <span id="hw-bag-count"></span> bags · opens in:</p>
         <div class="hw-cd-grid">
           <div class="hw-cd-unit"><span id="hw-days">--</span><span>Days</span></div>
           <div class="hw-cd-sep">·</div>
@@ -129,21 +129,9 @@
         </div>
         <a href="drops.html" class="hw-profile-link">View drop profile &rarr;</a>
       </div>
-      <!-- REGISTRATION OPEN -->
-      <div id="hw-registration" style="display:none">
-        <div class="hw-live-pill"><span class="hw-live-dot"></span>Registration Open</div>
-        <p class="hw-drop-label" style="margin-top:.8rem">Drop #<span id="hw-reg-drop-name"></span> — limited bags. Register for your chance.</p>
-        <a href="drops.html#register" class="btn btn-gold" style="margin-top:1rem">Register Now &rarr;</a>
-      </div>
-      <!-- SELECTION IN PROGRESS -->
-      <div id="hw-selection" style="display:none">
-        <p class="hw-drop-label">Drop #<span id="hw-sel-drop-name"></span> — Selection in progress</p>
-        <p class="hw-drop-label" style="opacity:.6;margin-top:.4rem">Winners are being notified by email.</p>
-        <a href="drops.html" class="hw-profile-link" style="margin-top:.8rem">View drop profile &rarr;</a>
-      </div>
-      <!-- PURCHASE WINDOW LIVE -->
+      <!-- LIVE -->
       <div id="hw-live" style="display:none">
-        <div class="hw-live-pill"><span class="hw-live-dot"></span>Purchase Window Open</div>
+        <div class="hw-live-pill"><span class="hw-live-dot"></span>Drop Live — Today Only</div>
         <a href="drops.html" class="btn btn-gold" style="margin-top:1.2rem">Claim Your Bag &rarr;</a>
       </div>
       <!-- SOLD OUT -->
@@ -348,32 +336,22 @@ document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
 (function(){
   const D = DROP_CONFIG.current;
   const pad = n => String(n).padStart(2,'0');
-  // Populate drop number in all states that reference it
-  ['hw-drop-name','hw-reg-drop-name','hw-sel-drop-name'].forEach(id => {
-    const el = document.getElementById(id);
-    if(el) el.textContent = D.number;
-  });
-
-  const states = ['hw-countdown','hw-registration','hw-selection','hw-live','hw-sold'];
-  function showWidget(id){
-    states.forEach(s => document.getElementById(s).style.display = 'none');
-    document.getElementById(id).style.display = 'block';
-  }
+  document.getElementById('hw-drop-name').textContent  = D.number;
+  document.getElementById('hw-bag-count').textContent  = D.bagCount;
 
   function setWidgetState(){
     const now = new Date();
-    if(now >= D.purchaseOpens && now <= D.purchaseCloses){
-      showWidget('hw-live');
-    } else if(now > D.purchaseCloses){
-      showWidget('hw-sold');
-    } else if(now >= D.registrationCloses && now < D.purchaseOpens){
-      showWidget('hw-selection');
-    } else if(now >= D.registrationOpens && now < D.registrationCloses){
-      showWidget('hw-registration');
+    const cd = document.getElementById('hw-countdown');
+    const lv = document.getElementById('hw-live');
+    const sd = document.getElementById('hw-sold');
+    if(now >= D.opens && now <= D.closes){
+      cd.style.display='none'; lv.style.display='block'; sd.style.display='none';
+    } else if(now > D.closes){
+      cd.style.display='none'; lv.style.display='none'; sd.style.display='block';
     } else {
-      showWidget('hw-countdown');
+      cd.style.display='block'; lv.style.display='none'; sd.style.display='none';
       (function tick(){
-        const diff = D.registrationOpens - new Date();
+        const diff = D.opens - new Date();
         if(diff <= 0){ setWidgetState(); return; }
         document.getElementById('hw-days').textContent  = pad(Math.floor(diff/86400000));
         document.getElementById('hw-hours').textContent = pad(Math.floor((diff%86400000)/3600000));
