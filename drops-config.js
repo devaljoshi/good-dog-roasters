@@ -58,9 +58,9 @@ const DROP_CONFIG = {
 
     // Featured Good Dog Story
     dogName:         'Spencer',
-    storyQuote:      '{{Spencer\'s story — add 2-3 sentences from the owner in their own voice.}}',
-    storyAuthor:     '{{First Name Last Name}}',
-    storyCity:       '{{City, FL}}',
+    storyQuote:      'Spencer came to us after we lost our beloved Yorkies, Snickers and Nick. We walked into a house full of rescue dogs and before we could say a word, he launched himself onto my daughter like he\'d been waiting for her — that was it, we knew. He\'s never lost that joy. Since Mojo passed, he\'s filled that quiet 5am spot I didn\'t know I was missing. Hard to find a soul willing to sit with you in the dark and just be there. Spencer never misses.',
+    storyAuthor:     'Deval Joshi, Founder — Good Dog Roasters',
+    storyCity:       'Palm Beach, FL',
     illustrationSrc: 'assets/01_spencer_transparent background.png',
   },
 
