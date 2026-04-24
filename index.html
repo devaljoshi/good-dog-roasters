@@ -372,9 +372,10 @@ function handleNewsletter(e){
   fetch('https://a.klaviyo.com/client/subscriptions/?company_id=QPLGzG',{
     method:'POST',
     headers:{'content-type':'application/json','revision':'2023-12-15'},
-    body:JSON.stringify({data:{type:'subscription',attributes:{list_id:'UyPu9F',email:email}}})
+    body:JSON.stringify({data:{type:'subscription',attributes:{list_id:'UyPu9F',custom_source:'Website',profile:{data:{type:'profile',attributes:{email:email}}}}}})
   })
-  .then(()=>{
+  .then(r=>{
+    if(!r.ok) throw new Error(r.status);
     btn.textContent='You’re in ✓';
     btn.style.background='var(--sage-deep)';
     form.querySelector('input[type=email]').value='';
