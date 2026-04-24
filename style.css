@@ -179,6 +179,21 @@ section{padding:8rem 2rem}
 .wl-form button:active{transform:translateY(0) scale(.98)}
 .wl-note{font-size:.72rem;color:rgba(44,24,16,.58);margin-top:1.2rem}
 
+/* ── Klaviyo embed overrides ── */
+.klaviyo-form-TvU8UX{max-width:440px;margin:0 auto}
+.klaviyo-form-TvU8UX [data-testid="form-component"],
+.klaviyo-form-TvU8UX form{background:transparent!important;border:none!important;box-shadow:none!important;padding:0!important}
+.klaviyo-form-TvU8UX input[type="email"]{margin-bottom:.8rem!important}
+.klaviyo-form-TvU8UX input[type="email"]{font-family:var(--body)!important;font-size:.86rem!important;color:var(--espresso)!important;background:rgba(246,243,241,.5)!important;border:1px solid rgba(44,24,16,.12)!important;border-radius:4px!important;padding:1rem 1.3rem!important;box-shadow:none!important}
+.klaviyo-form-TvU8UX input[type="email"]::placeholder{color:rgba(44,24,16,.28)!important}
+.klaviyo-form-TvU8UX button[type="submit"]{font-family:var(--body)!important;font-size:.72rem!important;font-weight:700!important;letter-spacing:.14em!important;text-transform:uppercase!important;background:var(--espresso)!important;color:var(--cream)!important;border:none!important;border-radius:4px!important;padding:1rem 1.8rem!important;cursor:pointer!important;transition:all .3s!important}
+.klaviyo-form-TvU8UX button[type="submit"]:hover{transform:translateY(-2px)!important;box-shadow:0 8px 24px rgba(44,24,16,.2)!important}
+/* hide the popup dismiss link */
+.klaviyo-form-TvU8UX [data-testid="dismiss-button"],
+.klaviyo-form-TvU8UX a[href="#"]{display:none!important}
+/* headings and body text inside form */
+.klaviyo-form-TvU8UX h1,.klaviyo-form-TvU8UX h2,.klaviyo-form-TvU8UX h3,.klaviyo-form-TvU8UX p{font-family:var(--body)!important;color:var(--espresso)!important}
+
 /* ═══ PRODUCTS ═══ */
 .products{background:var(--sage-light);text-align:center;padding:10rem 2rem}
 .products .s-label{color:var(--sage-deep);background:rgba(61,90,78,.06);border:1px solid rgba(61,90,78,.1)}
