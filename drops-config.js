@@ -25,8 +25,8 @@ const DROP_CONFIG = {
     bagCount:   25,                            // shown on countdown ("25 bags · opens...")
 
     // ── DATES ──────────────────────────────────────────────────────────────
-    opens:  new Date('2026-05-01T10:00:00'),   // when Shopify product goes live
-    closes: new Date('2026-05-01T23:59:59'),   // when drop closes (or sells out first)
+    opens:  new Date('2026-05-15T10:00:00'),   // when Shopify product goes live
+    closes: new Date('2026-05-15T23:59:59'),   // when drop closes (or sells out first)
 
     shopifyUrl: '#', // ← paste Shopify product URL here before opens time
 
@@ -38,7 +38,7 @@ const DROP_CONFIG = {
     varietal:   'Ethiopian Heirloom',
     process:    'Natural (Dry Process)',
     roastLevel: 'Light-Medium',
-    roastDate:  'May 1, 2026',
+    roastDate:  'May 15, 2026',
     bagSize:    '12 oz / 340g',
     price:      '$25',                  // ← set before launch
 
