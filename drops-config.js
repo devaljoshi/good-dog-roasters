@@ -20,48 +20,48 @@ const DROP_CONFIG = {
   current: {
     number:     '01',
     name:       'Ethiopia',
-    nameAccent: 'Yirgacheffe',               // shown in italic gold
+    nameAccent: 'Bensa Kokose',                // shown in italic gold
     subtitle:   'Hand Roasted · Palm Beach County · Small Batch',
-    bagCount:   25,                          // shown on countdown ("25 bags · opens...")
+    bagCount:   25,                            // shown on countdown ("25 bags · opens...")
 
     // ── DATES ──────────────────────────────────────────────────────────────
-    opens:  new Date('2026-04-22T10:00:00'), // when Shopify product goes live
-    closes: new Date('2026-04-22T23:59:59'), // when drop closes (or sells out first)
+    opens:  new Date('2026-05-01T10:00:00'),   // when Shopify product goes live
+    closes: new Date('2026-05-01T23:59:59'),   // when drop closes (or sells out first)
 
     shopifyUrl: '#', // ← paste Shopify product URL here before opens time
 
     // Coffee Stats
     origin:     'Ethiopia',
-    region:     'Yirgacheffe',
-    farm:       '{{FARM_OR_COOPERATIVE_NAME}}',
-    altitude:   '{{ALTITUDE}} masl',
-    varietal:   '{{VARIETAL}}',
-    process:    '{{WASHED / NATURAL / HONEY}}',
-    roastLevel: '{{LIGHT / LIGHT-MEDIUM / MEDIUM}}',
-    roastDate:  '{{MONTH DAY, YEAR}}',
+    region:     'Bensa, Sidama',
+    farm:       'Kokose Kebele Smallholders',
+    altitude:   '1,900–2,200 masl',
+    varietal:   'Ethiopian Heirloom',
+    process:    'Natural (Dry Process)',
+    roastLevel: 'Light-Medium',
+    roastDate:  'May 1, 2026',
     bagSize:    '12 oz / 340g',
-    price:      '${{PRICE}}',
+    price:      '$25',                  // ← set before launch
 
     // Tasting Notes (shown as tags)
     tastingNotes: [
-      '{{TASTING NOTE 1}}',
-      '{{TASTING NOTE 2}}',
-      '{{TASTING NOTE 3}}',
+      'Cherry Cordial',
+      'Dried Blueberry',
+      'Raspberry Truffle',
     ],
 
     // Roaster's written notes (each string = one paragraph)
     roasterNotes: [
-      '{{YOUR DESCRIPTION of this coffee\'s flavor, body, finish.}}',
-      '{{HOW YOU ROASTED IT — decisions you made, what you were going for.}}',
-      '{{BREWING RECOMMENDATIONS — grind size, method, water temp, ratio.}}',
+      'This coffee leads with fruit and delivers on the promise. The dry process gives it a syrupy body and big berry character — cherry cordial up front, dried blueberry in the middle, and a raspberry truffle sweetness that lingers on the finish. There\'s real chocolate depth underneath that grounds the fruit and keeps the cup from tipping into candy territory. Bright, complex, and unmistakably Ethiopian.',
+      'Dry process beans run hotter and carry more chaff than washed lots, so I took this one deliberately. I extended the drying phase to let off-gases clear, then built steadily toward first crack and pulled just before second crack began. A light-medium landing keeps the fruit character alive without letting it tip into fermented or boozy territory — enough development to round out the body, not so much that the character gets cooked off.',
+      'Pour-over is the move. V60 or Chemex, 1:15 ratio, 200°F water, medium-coarse grind — give it a 45-second bloom, natural process beans are gassy and need it. If you\'re in the first week off roast, rest it 3–5 days first for the CO₂ to clear. Cold brew works beautifully too: the dry process body becomes something rich and almost dessert-like when brewed long.',
     ],
 
     // Featured Good Dog Story
-    dogName:         '{{DOG_NAME}}',
-    storyQuote:      '{{The customer\'s story — 2-3 sentences in their own voice.}}',
+    dogName:         'Spencer',
+    storyQuote:      '{{Spencer\'s story — add 2-3 sentences from the owner in their own voice.}}',
     storyAuthor:     '{{First Name Last Name}}',
     storyCity:       '{{City, FL}}',
-    illustrationSrc: '', // e.g. 'assets/drop-01-illustration.jpg'
+    illustrationSrc: 'assets/01_spencer_transparent background.png',
   },
 
   // ── ARCHIVE ───────────────────────────────────────────────────────────────
@@ -69,11 +69,11 @@ const DROP_CONFIG = {
   archive: [
     // {
     //   number:      '01',
-    //   name:        'Ethiopia Yirgacheffe',
+    //   name:        'Ethiopia Bensa Kokose',
     //   date:        'May 2026',
-    //   tags:        ['Washed', 'Light-Medium'],
-    //   tastingNotes:'Jasmine · Citrus · Brown Sugar',
-    //   dogName:     'Biscuit',
+    //   tags:        ['Natural', 'Light-Medium'],
+    //   tastingNotes:'Cherry Cordial · Dried Blueberry · Raspberry Truffle',
+    //   dogName:     'Spencer',
     // },
   ],
 

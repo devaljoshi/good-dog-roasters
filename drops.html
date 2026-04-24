@@ -39,6 +39,7 @@
 <!-- ═══ HERO ═══ -->
 <section class="drop-hero">
   <div class="drop-bg-num" id="js-bg-num" aria-hidden="true"></div>
+  <div class="drop-hero-inner">
   <div class="drop-hero-content">
     <p class="s-label drop-label">Artisan Drop</p>
     <span class="drop-num-tag" id="js-num-tag"></span>
@@ -83,6 +84,15 @@
       <a href="index.html#waitlist" class="btn btn-dark">Get Notified of the Next Drop</a>
     </div>
   </div>
+
+  <!-- Hero dog portrait — populated by JS when illustrationSrc is set -->
+  <div class="drop-hero-dog-frame" id="js-hero-dog-frame">
+    <div class="drop-hero-dog-ring">
+      <img id="js-hero-dog-img" src="" alt="" class="drop-hero-dog-img">
+    </div>
+    <p class="drop-hero-dog-label" id="js-hero-dog-label"></p>
+  </div>
+  </div><!-- /drop-hero-inner -->
 </section>
 
 <!-- ═══ DROP PROFILE ═══ -->
@@ -232,6 +242,15 @@ document.getElementById('js-bag-line').textContent   = D.bagCount + ' bags · fi
 document.getElementById('js-opens-date').textContent = formatDate(D.opens);
 document.getElementById('js-buy-link').href          = D.shopifyUrl;
 document.getElementById('js-sold-badge').textContent = 'Drop #' + D.number + ' — Sold Out';
+
+// Hero dog portrait
+if(D.illustrationSrc){
+  const heroSection = document.querySelector('.drop-hero');
+  document.getElementById('js-hero-dog-img').src = D.illustrationSrc;
+  document.getElementById('js-hero-dog-img').alt = D.dogName + ' — the Good Dog behind Drop #' + D.number;
+  document.getElementById('js-hero-dog-label').textContent = D.dogName;
+  heroSection.classList.add('has-dog');
+}
 
 // Stats panel
 document.getElementById('js-stats-heading').innerHTML   = 'Drop #' + D.number + '<br>At a Glance';

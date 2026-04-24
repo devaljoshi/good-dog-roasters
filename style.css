@@ -255,8 +255,19 @@ footer{background:var(--espresso);color:rgba(246,243,241,.65);padding:6rem 3.5re
 /* ═══ DROPS PAGE ═══ */
 .drop-hero{min-height:100vh;background:var(--cream);display:flex;align-items:center;justify-content:center;text-align:center;padding:10rem 2rem 8rem;position:relative;overflow:hidden;border-bottom:1px solid rgba(44,24,16,.06)}
 .drop-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(121,155,142,.08) 0%,transparent 60%);pointer-events:none}
-.drop-bg-num{position:absolute;font-family:var(--display);font-size:clamp(20rem,40vw,48rem);font-weight:800;color:rgba(44,24,16,.09);line-height:1;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;user-select:none;letter-spacing:-.06em}
+.drop-bg-num{position:absolute;font-family:var(--display);font-size:clamp(20rem,40vw,48rem);font-weight:800;color:rgba(44,24,16,.06);line-height:1;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;user-select:none;letter-spacing:-.06em}
+.drop-hero.has-dog .drop-bg-num{left:28%;font-size:clamp(14rem,24vw,32rem)}
+.drop-hero-inner{display:flex;align-items:center;justify-content:center;gap:5rem;max-width:1160px;width:100%}
 .drop-hero-content{position:relative;z-index:2;max-width:700px}
+/* Dog portrait — split layout */
+.drop-hero-dog-frame{display:none;flex-direction:column;align-items:center;gap:1.2rem;flex-shrink:0;position:relative;z-index:2}
+.drop-hero.has-dog .drop-hero-dog-frame{display:flex}
+.drop-hero.has-dog .drop-hero-content{max-width:540px;text-align:left}
+.drop-hero.has-dog .countdown-grid{justify-content:flex-start}
+.drop-hero.has-dog .drop-live-state,.drop-hero.has-dog .drop-sold-state{align-items:flex-start}
+.drop-hero-dog-ring{width:320px;height:320px;border-radius:50%;overflow:hidden;border:2px solid rgba(44,24,16,.1);box-shadow:0 20px 60px rgba(44,24,16,.12),0 0 0 10px rgba(44,24,16,.04)}
+.drop-hero-dog-img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
+.drop-hero-dog-label{font-size:.6rem;font-weight:700;letter-spacing:.38em;text-transform:uppercase;color:rgba(246,243,241,.35)}
 .drop-label{color:var(--sage-deep);background:rgba(61,90,78,.06);border:1px solid rgba(61,90,78,.12)}
 .drop-num-tag{display:block;font-size:.6rem;font-weight:700;letter-spacing:.42em;text-transform:uppercase;color:var(--brown-light);margin-bottom:.8rem}
 .drop-hero-name{font-family:var(--display);font-size:clamp(3rem,7vw,5.5rem);font-weight:800;color:var(--espresso);line-height:1.04;letter-spacing:-.04em;margin:.6rem 0 1rem}
@@ -339,7 +350,7 @@ footer{background:var(--espresso);color:rgba(246,243,241,.65);padding:6rem 3.5re
 .drop-notify .s-label{color:var(--espresso);background:rgba(44,24,16,.06);border:1px solid rgba(44,24,16,.08)}
 .drop-notify h2{font-family:var(--display);font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;color:var(--espresso);letter-spacing:-.02em;margin:.5rem 0 1rem}
 .drop-notify p{font-size:.92rem;line-height:1.8;color:var(--brown);max-width:440px;margin:0 auto 2.5rem}
-@media(max-width:900px){.drop-profile-inner{grid-template-columns:1fr;gap:4rem}.drop-stats-panel{position:static}.drop-archive-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:900px){.drop-profile-inner{grid-template-columns:1fr;gap:4rem}.drop-stats-panel{position:static}.drop-archive-grid{grid-template-columns:1fr 1fr}.drop-hero.has-dog .drop-hero-inner{flex-direction:column-reverse;gap:3rem}.drop-hero.has-dog .drop-hero-content{text-align:center;max-width:100%}.drop-hero.has-dog .countdown-grid{justify-content:center}.drop-hero.has-dog .drop-live-state,.drop-hero.has-dog .drop-sold-state{align-items:center}.drop-hero-dog-ring{width:220px;height:220px}}
 @media(max-width:600px){.countdown-grid{gap:.5rem}.countdown-unit{min-width:4rem;padding:1.2rem .6rem}.countdown-sep{font-size:1.8rem}.drop-archive-grid{grid-template-columns:1fr}.drop-profile{padding:5rem 1.5rem}}
 
 /* ═══ MEET MOJO ═══ */
