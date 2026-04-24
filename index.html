@@ -369,14 +369,20 @@ function handleNewsletter(e){
   const email=form.querySelector('input[type=email]').value.trim();
   btn.textContent='Subscribing...';btn.style.pointerEvents='none';
 
-  fetch('https://a.klaviyo.com/client/subscriptions/?company_id=QPLGzG',{
+  const data=new URLSearchParams();
+  data.append('g','UyPu9F');
+  data.append('email',email);
+  data.append('$source','Website');
+
+  fetch('https://manage.kmail-lists.com/ajax/subscriptions/subscribe',{
     method:'POST',
-    headers:{'content-type':'application/json','revision':'2023-12-15'},
-    body:JSON.stringify({data:{type:'subscription',attributes:{list_id:'UyPu9F',custom_source:'Website',profile:{data:{type:'profile',attributes:{email:email}}}}}})
+    headers:{'content-type':'application/x-www-form-urlencoded'},
+    body:data
   })
+  .then(r=>r.json())
   .then(r=>{
-    if(!r.ok) throw new Error(r.status);
-    btn.textContent='You’re in ✓';
+    if(r.errors && r.errors.length) throw new Error(r.errors);
+    btn.textContent='You\'re in ✓';
     btn.style.background='var(--sage-deep)';
     form.querySelector('input[type=email]').value='';
   })
