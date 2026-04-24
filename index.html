@@ -247,8 +247,7 @@
   <p class="s-label">Stay in the Loop</p>
   <h2 class="s-title">Good coffee, delivered to your inbox.</h2>
   <p class="s-body" style="margin:0 auto 3.5rem;text-align:center">New artisan drops, curated finds, and behind-the-scenes from the roast floor — straight to your inbox. No noise, just coffee.</p>
-  <form class="wl-form" name="newsletter" data-netlify="true" onsubmit="handleNewsletter(event)">
-    <input type="hidden" name="form-name" value="newsletter">
+  <form class="wl-form" onsubmit="handleNewsletter(event)">
     <label for="newsletter-email" class="sr-only">Email address</label>
     <input type="email" id="newsletter-email" name="email" placeholder="Your email address" required>
     <button type="submit">Subscribe</button>
@@ -367,17 +366,23 @@ document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
 function handleNewsletter(e){
   e.preventDefault();
   const form=e.target, btn=form.querySelector('button');
+  const email=form.querySelector('input[type=email]').value.trim();
   btn.textContent='Subscribing...';btn.style.pointerEvents='none';
-  fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(new FormData(form)).toString()})
-    .then(()=>{
-      btn.textContent='You\u2019re in \u2713';
-      btn.style.background='var(--sage-deep)';
-      form.querySelector('input[type=email]').value='';
-    })
-    .catch(()=>{
-      btn.textContent='Try again';
-      btn.style.pointerEvents='auto';
-    });
+
+  fetch('https://a.klaviyo.com/client/subscriptions/?company_id=QPLGzG',{
+    method:'POST',
+    headers:{'content-type':'application/json','revision':'2023-12-15'},
+    body:JSON.stringify({data:{type:'subscription',attributes:{list_id:'UyPu9F',email:email}}})
+  })
+  .then(()=>{
+    btn.textContent='You’re in ✓';
+    btn.style.background='var(--sage-deep)';
+    form.querySelector('input[type=email]').value='';
+  })
+  .catch(()=>{
+    btn.textContent='Try again';
+    btn.style.pointerEvents='auto';
+  });
 }
 
 
