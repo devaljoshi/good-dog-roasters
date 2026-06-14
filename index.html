@@ -137,7 +137,7 @@
       </div>
       <!-- SOLD OUT -->
       <div id="hw-sold" style="display:none">
-        <p class="hw-drop-label">Next drop coming soon</p>
+        <p class="hw-drop-label">Next drop drops when the roast is ready</p>
         <a href="#waitlist" class="btn btn-gold">Get Notified &rarr;</a>
       </div>
     </div>
@@ -303,11 +303,17 @@ window.addEventListener('scroll',()=>n.classList.toggle('scrolled',window.scroll
 
 // Random hero video on each page load — add more paths to the array as needed
 (function(){
-  const videos=['assets/header.mp4','assets/header2.mp4','assets/header3.mp4','assets/header4.mp4'];
-  const picked=videos[Math.floor(Math.random()*videos.length)];
+  const videos=[
+    ['assets/header.mp4',  'assets/hero-poster-1.jpg'],
+    ['assets/header2.mp4', 'assets/hero-poster-2.jpg'],
+    ['assets/header3.mp4', 'assets/hero-poster-3.jpg'],
+    ['assets/header4.mp4', 'assets/hero-poster-4.jpg'],
+  ];
+  const [src,poster]=videos[Math.floor(Math.random()*videos.length)];
   const v=document.getElementById('hero-video');
+  v.poster=poster;
   const s=document.createElement('source');
-  s.src=picked; s.type='video/mp4';
+  s.src=src; s.type='video/mp4';
   v.appendChild(s);
   v.load();
 })();
