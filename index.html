@@ -341,15 +341,20 @@ document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
 
 // Homepage allocation widget — shows the next month with bags left
 (function(){
-  const b = DROP_CONFIG.nextOpen;
   const P = DROP_CONFIG.pricing;
-  if(!b){ document.getElementById('hw-full').hidden = false; return; }
-  const left = b.capacity - b.claimed;
-  document.getElementById('hw-month').textContent = b.month;
-  document.getElementById('hw-bar-fill').style.width = Math.round(b.claimed / b.capacity * 100) + '%';
-  document.getElementById('hw-left').textContent = left + ' of ' + b.capacity + ' bags left · roasts ' + b.roastWeek.replace(/^Week of/, 'the week of');
-  document.getElementById('hw-price').textContent = '$' + P.price + ' · 12 oz · $' + P.donation + ' to ' + DROP_CONFIG.partner.short;
-  document.getElementById('hw-open').hidden = false;
+  function render(){
+    const b = DROP_CONFIG.nextOpen;
+    document.getElementById('hw-open').hidden = !b;
+    document.getElementById('hw-full').hidden = !!b;
+    if(!b) return;
+    const left = b.capacity - b.claimed;
+    document.getElementById('hw-month').textContent = b.month;
+    document.getElementById('hw-bar-fill').style.width = Math.round(b.claimed / b.capacity * 100) + '%';
+    document.getElementById('hw-left').textContent = left + ' of ' + b.capacity + ' bags left · roasts ' + b.roastWeek.replace(/^Week of/, 'the week of');
+    document.getElementById('hw-price').textContent = '$' + P.price + ' · 12 oz · $' + P.donation + ' to ' + DROP_CONFIG.partner.short;
+  }
+  render();
+  DROP_CONFIG.refreshLive().then(ok => { if(ok) render(); });
 })();
 
 function handleNewsletter(e){

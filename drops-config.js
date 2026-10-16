@@ -11,8 +11,10 @@
  *    that batch's shopifyUrl below.
  * 2. Keep ~3 months open at a time. When a month ships, move it to `archive`
  *    and add the next month to the end of `batches`.
- * 3. Update `claimed` as orders come in (Shopify → Products → inventory sold).
- *    A batch with claimed >= capacity shows as fully allocated automatically.
+ * 3. Bags-left counts come live from Shopify on every page load (refreshLive
+ *    below), so `claimed` is only a fallback if Shopify can't be reached.
+ *    Exact counts need the storefront token's unauthenticated_read_product_inventory
+ *    permission; without it, sold-out months are still detected automatically.
  * 4. When you pick the green coffee for a month, set that batch's `coffee`
  *    and replace `profile` below with its tasting profile.
  * 5. Every quarter: pay the rescue partner, then add a row to `ledger`.
@@ -153,4 +155,40 @@ DROP_CONFIG.partner = DROP_CONFIG.charity.announced
     };
 
 // Next batch with bags left (or null) — used by drops.html and the homepage widget.
-DROP_CONFIG.nextOpen = DROP_CONFIG.batches.find(b => b.claimed < b.capacity) || null;
+DROP_CONFIG.findNextOpen = () => DROP_CONFIG.batches.find(b => b.claimed < b.capacity) || null;
+DROP_CONFIG.nextOpen = DROP_CONFIG.findNextOpen();
+
+// Live counts from Shopify. Overwrites `claimed` with what Shopify actually has:
+// - exact bags left, if the storefront token has unauthenticated_read_product_inventory
+// - otherwise just sold-out detection (availableForSale needs no extra permission)
+// Falls back silently to the manual `claimed` values if Shopify can't be reached.
+DROP_CONFIG.refreshLive = async function(){
+  const withIds = this.batches.map(b => ({ b, id: (b.shopifyUrl.match(/variant=(\d+)/) || [])[1] })).filter(x => x.id);
+  if(!withIds.length) return false;
+  const query = `{ nodes(ids: [${withIds.map(x => `"gid://shopify/ProductVariant/${x.id}"`).join(',')}]) {
+    ... on ProductVariant { id availableForSale quantityAvailable } } }`;
+  try{
+    const res = await fetch('https://good-dog-roasters.myshopify.com/api/2024-10/graphql.json', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Shopify-Storefront-Access-Token': '8029c8b316efbfcc22cbf26acd6d1bc6' },
+      body: JSON.stringify({ query }),
+    });
+    const nodes = ((await res.json()).data || {}).nodes || [];
+    nodes.forEach((n, i) => {
+      if(!n) return;
+      const b = withIds[i].b;
+      if(typeof n.quantityAvailable === 'number'){
+        const left = Math.max(n.quantityAvailable, 0);
+        b.capacity = Math.max(b.capacity, left);      // inventory raised in Shopify (e.g. to 40)
+        b.claimed  = n.availableForSale ? b.capacity - left : b.capacity;
+      } else if(!n.availableForSale){
+        b.claimed = b.capacity;                       // sold out
+      }
+    });
+    this.nextOpen = this.findNextOpen();
+    return true;
+  }catch(e){
+    console.warn('Live allocation counts unavailable, using config values:', e);
+    return false;
+  }
+};

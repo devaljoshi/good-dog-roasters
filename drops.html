@@ -295,6 +295,7 @@ $('js-step-shipping').textContent = '$' + P.shipping + ' flat shipping in Florid
 // ── Open months board ───────────────────────────────────────────────────────
 $('js-board-note').textContent = 'We roast about ' + capacity + ' bags a month today and are working toward 40. Each month stays open until it\'s fully reserved — take your time.';
 
+function renderBatches(){
 $('js-batches').innerHTML = B.length ? B.map((b,i)=>{
   const left = Math.max(b.capacity - b.claimed, 0);
   const full = left === 0;
@@ -319,6 +320,15 @@ $('js-batches').innerHTML = B.length ? B.map((b,i)=>{
         : `<a href="${b.shopifyUrl}" class="drop-cta-btn batch-cta">Reserve a Bag &rarr;</a>`}
     </div>`;
 }).join('') : '<div class="archive-empty">New months are being scheduled. Join the newsletter to hear when they open.</div>';
+document.querySelectorAll('#js-batches .rv').forEach(el=>obs.observe(el));
+}
+renderBatches();
+DROP_CONFIG.refreshLive().then(ok => {
+  if(!ok) return;
+  const shown = document.querySelector('#js-batches .rv.v');   // already revealed? don't replay the animation
+  renderBatches();
+  if(shown) document.querySelectorAll('#js-batches .rv').forEach(el=>el.classList.add('v'));
+});
 
 // ── Giving split + ledger ───────────────────────────────────────────────────
 const coffeePct = Math.round(P.coffeeShare / P.price * 100);
