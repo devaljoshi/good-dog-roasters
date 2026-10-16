@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Artisan Drops — Good Dog Roasters</title>
-<meta name="description" content="Small-batch artisan coffee roasted by hand in Palm Beach County, FL. Limited drops released when the roast is ready — full tasting profile, ships within 48 hours of roast.">
+<title>Artisan Allocation — Good Dog Roasters</title>
+<meta name="description" content="Reserve a bag of small-batch coffee hand-roasted in Palm Beach County, FL. Pick a month, pay once, and it's yours — roasted that week, shipped within 48 hours. $5 from every bag goes to Barky Pines Animal Rescue.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://good-dog-roasters.com/drops.html">
 
@@ -27,7 +27,7 @@
   <a href="index.html" class="n-logo">Good Dog Roasters</a>
   <div class="n-links">
     <a href="index.html#story">Our Story</a>
-    <a href="drops.html">Artisan Drops</a>
+    <a href="drops.html">Artisan Allocation</a>
     <a href="index.html#coffee">Coffee</a>
     <a href="index.html#waitlist">Newsletter</a>
     <a href="https://good-dog-roasters.myshopify.com" target="_blank" class="n-cta">Shop Now</a>
@@ -38,69 +38,118 @@
 
 <!-- ═══ HERO ═══ -->
 <section class="drop-hero">
-  <div class="drop-bg-num" id="js-bg-num" aria-hidden="true"></div>
   <div class="drop-hero-inner">
   <div class="drop-hero-content">
-    <p class="s-label drop-label">Artisan Drop</p>
-    <span class="drop-num-tag" id="js-num-tag"></span>
-    <h1 class="drop-hero-name" id="js-hero-name"></h1>
-    <p class="drop-roast-line" id="js-roast-line"></p>
+    <p class="s-label drop-label">Artisan Allocation</p>
+    <h1 class="drop-hero-name">Reserve your bag.<br><em>No countdowns.</em></h1>
+    <p class="drop-roast-line">Hand Roasted · Palm Beach County · <span id="js-capacity-line"></span></p>
+    <p class="alloc-lede">Every month we roast one small batch by hand. Pick any open month, pay once, and your bag is guaranteed — roasted that week and shipped within 48 hours. No refreshing a page at 10am. No missing out because you were in a meeting.</p>
 
-    <!-- STATE 1: COUNTDOWN -->
-    <div id="state-countdown">
-      <p class="drop-opens-note" id="js-bag-line"></p>
-      <div class="countdown-grid">
-        <div class="countdown-unit"><span class="cd-num" id="cd-days">--</span><span class="cd-label">Days</span></div>
-        <div class="countdown-sep" aria-hidden="true">·</div>
-        <div class="countdown-unit"><span class="cd-num" id="cd-hours">--</span><span class="cd-label">Hours</span></div>
-        <div class="countdown-sep" aria-hidden="true">·</div>
-        <div class="countdown-unit"><span class="cd-num" id="cd-mins">--</span><span class="cd-label">Minutes</span></div>
-        <div class="countdown-sep" aria-hidden="true">·</div>
-        <div class="countdown-unit"><span class="cd-num" id="cd-secs">--</span><span class="cd-label">Seconds</span></div>
-      </div>
-      <p class="drop-opens-note">Opens <span class="drop-opens-date" id="js-opens-date"></span> &nbsp;·&nbsp; Closes at midnight</p>
-      <p class="drop-opens-note" style="margin-top:.4rem">Newsletter subscribers hear first &nbsp;·&nbsp; <a href="index.html#waitlist" class="drop-fl-link">Subscribe &rarr;</a></p>
-      <p class="drop-fl-notice">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        Artisan drops ship within Florida only. <a href="privacy.html#florida-shipping" class="drop-fl-link">Why?</a>
-      </p>
+    <div class="alloc-price">
+      <div class="alloc-price-num">$<span id="js-price"></span><span class="alloc-price-size" id="js-bag-size"></span></div>
+      <div class="alloc-price-split" id="js-price-split"></div>
     </div>
 
-    <!-- STATE 2: LIVE -->
-    <div id="state-live" class="drop-live-state" style="display:none">
-      <div class="live-pill"><span class="live-dot" aria-hidden="true"></span>Live Now — Today Only</div>
-      <a href="#" class="drop-cta-btn" id="js-buy-link">Claim Your Bag &rarr;</a>
-      <p class="drop-closes-note">This drop closes tonight at midnight. It won't reopen.</p>
-      <p class="drop-fl-notice">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        Artisan drops ship within Florida only. <a href="privacy.html#florida-shipping" class="drop-fl-link">Why?</a>
-      </p>
-    </div>
-
-    <!-- STATE 3: SOLD OUT / CLOSED -->
-    <div id="state-sold" class="drop-sold-state" style="display:none">
-      <div class="sold-badge" id="js-sold-badge"></div>
-      <p class="drop-closes-note">Every bag from this drop found a home. Join the newsletter to hear when the next one opens.</p>
-      <a href="index.html#waitlist" class="btn btn-dark">Get Notified of the Next Drop</a>
-    </div>
+    <a href="#batches" class="drop-cta-btn">See Open Months &rarr;</a>
+    <p class="drop-fl-notice">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      Florida delivery only — made in a cottage food operation. <a href="#cottage-food" class="drop-fl-link">Why?</a>
+    </p>
   </div>
-
-  <!-- Hero dog portrait — populated by JS when illustrationSrc is set -->
-  <div class="drop-hero-dog-frame" id="js-hero-dog-frame">
-    <div class="drop-hero-dog-ring">
-      <img id="js-hero-dog-img" src="" alt="" class="drop-hero-dog-img">
-    </div>
-    <p class="drop-hero-dog-label" id="js-hero-dog-label"></p>
   </div>
-  </div><!-- /drop-hero-inner -->
 </section>
 
-<!-- ═══ DROP PROFILE ═══ -->
+<!-- ═══ OPEN MONTHS ═══ -->
+<section class="alloc-board" id="batches">
+  <div class="alloc-board-inner">
+    <div class="drop-archive-header rv">
+      <p class="s-label">Open Months</p>
+      <h2>Pick your roast month.</h2>
+      <p class="alloc-board-note" id="js-board-note"></p>
+    </div>
+    <div class="batch-grid" id="js-batches"></div>
+  </div>
+</section>
+
+<!-- ═══ HOW IT WORKS ═══ -->
+<section class="alloc-how">
+  <div class="alloc-how-inner">
+    <div class="rv">
+      <p class="s-label">How It Works</p>
+      <h2 class="alloc-how-title">You're buying the guarantee.</h2>
+    </div>
+    <div class="alloc-steps">
+      <div class="alloc-step rv">
+        <span class="origin-num">01</span>
+        <h3>Pick a month</h3>
+        <p id="js-step-limit"></p>
+      </div>
+      <div class="alloc-step rv d1">
+        <span class="origin-num">02</span>
+        <h3>Pay once. It's yours.</h3>
+        <p>Your bag is reserved the moment you check out. No queue to watch, no lottery, no countdown.</p>
+      </div>
+      <div class="alloc-step rv d2">
+        <span class="origin-num">03</span>
+        <h3>We roast, you brew</h3>
+        <p>Roasted by hand the week shown and shipped within 48 hours. Florida delivery usually takes 2–5 business days. <span id="js-step-shipping"></span></p>
+      </div>
+      <div class="alloc-step rv d3">
+        <span class="origin-num">04</span>
+        <h3>Plans change? Fine.</h3>
+        <p>Full refund any time before your month roasts. If a roast ever slips, we email you first — and you can cancel for a full refund.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ WHERE YOUR MONEY GOES ═══ -->
+<section class="alloc-giving" id="giving">
+  <div class="alloc-giving-inner">
+    <div class="rv">
+      <p class="s-label">Where Your $<span class="js-price"></span> Goes</p>
+      <h2 class="alloc-how-title">Every bag. Every time. <em>No "portion of proceeds."</em></h2>
+    </div>
+    <div class="split-bar rv" id="js-split-bar" role="img"></div>
+    <div class="split-legend rv">
+      <div>
+        <strong>$<span class="js-coffee-share"></span> — the coffee</strong>
+        <p>Green coffee, roasting, the bag and label, card fees, and keeping a one-person roastery running.</p>
+      </div>
+      <div>
+        <strong>$<span class="js-donation"></span> — <a class="js-charity-link drop-fl-link" target="_blank" rel="noopener"></a></strong>
+        <p id="js-charity-desc"></p>
+      </div>
+    </div>
+
+    <div class="ledger rv">
+      <h3>The Giving Ledger</h3>
+      <p class="ledger-note" id="js-ledger-note"></p>
+      <div class="ledger-scroll">
+        <table class="ledger-table" id="js-ledger"></table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ COTTAGE FOOD NOTICE ═══ -->
+<section class="cottage-notice" id="cottage-food" aria-labelledby="cottage-title">
+  <div class="cottage-notice-inner rv">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></svg>
+    <div>
+      <h2 id="cottage-title">Made in a Florida cottage food operation</h2>
+      <p class="cottage-statement">"Made in a cottage food operation that is not subject to Florida's food safety regulations."</p>
+      <p>Artisan coffee is roasted by hand in our Palm Beach County home kitchen under Florida's Cottage Food Law (Florida Statute 500.80). That law lets us sell directly to you, but only within Florida — so Artisan bags ship to Florida addresses only. Every bag carries the statement above. Our Everyday Collection is roasted by licensed commercial roasters and ships nationwide. <a href="shipping.html" class="drop-fl-link">Shipping details &rarr;</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ROAST PROFILE ═══ -->
 <section class="drop-profile">
   <div class="drop-profile-inner">
     <div class="drop-stats-panel rv">
       <div class="drop-stats-header">
-        <p class="s-label">The Details</p>
+        <p class="s-label" id="js-profile-label"></p>
         <h2 id="js-stats-heading"></h2>
       </div>
       <ul class="drop-stat-list" id="js-stat-list"></ul>
@@ -112,7 +161,7 @@
 
     <div class="drop-notes-panel rv d1">
       <p class="drop-notes-eyebrow">The Roaster's Notes</p>
-      <h2 class="drop-notes-title">What's in<br><em>the cup.</em></h2>
+      <h2 class="drop-notes-title" id="js-notes-title"></h2>
       <div class="drop-tasting" id="js-tasting-notes"></div>
       <div class="drop-description" id="js-roaster-notes"></div>
       <div class="drop-roaster-sig">
@@ -129,7 +178,7 @@
 <!-- ═══ FEATURED STORY ═══ -->
 <section class="drop-story-section">
   <div class="drop-story-inner rv">
-    <p class="s-label">The Story Behind the Drop</p>
+    <p class="s-label">The Story Behind the Roast</p>
     <div class="drop-story-illus" id="js-story-illus">
       <div class="drop-story-illus-ph">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
@@ -144,9 +193,9 @@
 <!-- ═══ SHARE YOUR STORY ═══ -->
 <section class="dog-stories" id="share">
   <div class="rv">
-    <p class="s-label">Featured in Every Drop</p>
+    <p class="s-label">Featured in Every Roast</p>
     <h2 class="s-title">Share Your Good Dog Story</h2>
-    <p class="s-body">Every Artisan Drop features an original illustration inspired by a story submitted by one of our customers. Tell us about your good dog — the one who makes your mornings better — and yours might be the next drop's cover story.</p>
+    <p class="s-body">Every monthly Artisan roast features an original illustration inspired by a story submitted by one of our customers. Tell us about your good dog — the one who makes your mornings better — and yours might be the next roast's cover story.</p>
   </div>
   <form class="story-form rv d1" name="good-dog-story" data-netlify="true" data-netlify-honeypot="bot-field" id="story-form" onsubmit="handleStoryForm(event)">
     <input type="hidden" name="form-name" value="good-dog-story">
@@ -173,12 +222,12 @@
     <div class="story-form-field">
       <label class="story-file-label" for="story-photo">Upload a Photo <span style="font-weight:400;opacity:.6">(optional)</span></label>
       <input type="file" id="story-photo" name="photo" accept="image/*">
-      <span class="story-file-note">Optional. JPG, PNG or WEBP. We may use your photo with your permission for the drop illustration.</span>
+      <span class="story-file-note">Optional. JPG, PNG or WEBP. We may use your photo with your permission for the roast illustration.</span>
     </div>
     <button type="submit" class="btn-submit">Submit Your Story</button>
   </form>
   <div class="story-success rv" id="story-success">
-    Thank you. We read every story.<br>If yours inspires a drop, we'll be in touch.
+    Thank you. We read every story.<br>If yours inspires a roast, we'll be in touch.
   </div>
 </section>
 
@@ -186,7 +235,7 @@
 <section class="drop-archive">
   <div class="drop-archive-inner">
     <div class="drop-archive-header rv">
-      <p class="s-label">Every Drop</p>
+      <p class="s-label">Every Roast</p>
       <h2>The Archive</h2>
     </div>
     <div class="drop-archive-grid" id="js-archive"></div>
@@ -196,9 +245,9 @@
 <!-- ═══ NOTIFY ═══ -->
 <section class="drop-notify">
   <div class="rv">
-    <p class="s-label">Never Miss a Drop</p>
-    <h2>Drops ship when the roast is ready.</h2>
-    <p>Each one is different. Each one sells out. Get on the newsletter and we'll make sure you hear first when the next one opens.</p>
+    <p class="s-label">New Months, Announced Calmly</p>
+    <h2>One email when a new month opens.</h2>
+    <p>No rush — open months stay open until they're fully reserved. The newsletter just tells you what's roasting next and when a new month is added.</p>
     <a href="index.html#waitlist" class="btn btn-dark">Join the Newsletter &rarr;</a>
   </div>
 </section>
@@ -209,7 +258,7 @@
     <div class="f-brand"><span class="n-logo">Good Dog Roasters</span><p>Artisan roasts made in Palm Beach County. Everyday coffees curated to the same standard. Be Good. Do Good. Taste Good.</p></div>
     <div class="f-col"><h4>Shop</h4><a href="https://good-dog-roasters.myshopify.com/collections/single-origin" target="_blank">Single Origin</a><a href="https://good-dog-roasters.myshopify.com/collections/blends" target="_blank">Blends</a><a href="https://good-dog-roasters.myshopify.com/collections/sample-packs" target="_blank">Sample Packs</a><a href="https://good-dog-roasters.myshopify.com/collections/tea" target="_blank">Tea</a></div>
     <div class="f-col"><h4>Merch</h4><a href="https://good-dog-roasters.myshopify.com/collections/tees" target="_blank">Tees</a><a href="https://good-dog-roasters.myshopify.com/collections/hoodies-sweatshirts" target="_blank">Hoodies</a><a href="https://good-dog-roasters.myshopify.com/collections/hats-caps" target="_blank">Hats</a><a href="https://good-dog-roasters.myshopify.com/collections/mugs" target="_blank">Mugs</a></div>
-    <div class="f-col"><h4>Company</h4><a href="index.html#story">Our Story</a><a href="index.html#mojo">Meet Mojo</a><a href="index.html#giving-back">Our Rescue Partner</a><a href="index.html#waitlist">Newsletter</a><a href="faq.html">FAQ</a><a href="https://good-dog-roasters.myshopify.com/pages/contact" target="_blank">Contact</a></div>
+    <div class="f-col"><h4>Company</h4><a href="index.html#story">Our Story</a><a href="index.html#mojo">Meet Mojo</a><a href="drops.html#giving">Our Rescue Partner</a><a href="index.html#waitlist">Newsletter</a><a href="faq.html">FAQ</a><a href="https://good-dog-roasters.myshopify.com/pages/contact" target="_blank">Contact</a></div>
   </div>
   <div class="f-bottom"><span>2026 Good Dog Roasters. All rights reserved.</span><span><a href="accessibility.html" class="f-privacy">Accessibility</a> &nbsp;&middot;&nbsp; <a href="privacy.html" class="f-privacy">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="terms.html" class="f-privacy">Terms</a> &nbsp;&middot;&nbsp; <a href="returns.html" class="f-privacy">Returns</a> &nbsp;&middot;&nbsp; <a href="shipping.html" class="f-privacy">Shipping</a> &nbsp;&middot;&nbsp; Roasted with love in Palm Beach County.</span></div>
 </footer>
@@ -222,38 +271,80 @@
 const n=document.getElementById('nav');
 window.addEventListener('scroll',()=>n.classList.toggle('scrolled',window.scrollY>50),{passive:true});
 const obs=new IntersectionObserver(e=>{e.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v')})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
 
-function pad(n){return String(n).padStart(2,'0')}
+const P = DROP_CONFIG.pricing;
+const C = DROP_CONFIG.charity;
+const B = DROP_CONFIG.batches;
+const D = DROP_CONFIG.profile;
+const $ = id => document.getElementById(id);
+const setAll = (sel, val) => document.querySelectorAll(sel).forEach(el => el.textContent = val);
 
-function formatDate(d){
-  return d.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'});
+// ── Hero & pricing ──────────────────────────────────────────────────────────
+const capacity = B.length ? B[0].capacity : 20;
+$('js-capacity-line').textContent = capacity + ' bags a month';
+$('js-price').textContent         = P.price;
+$('js-bag-size').textContent      = ' · ' + P.bagSize.split(' / ')[0];
+$('js-price-split').innerHTML     = '$' + P.coffeeShare + ' for the coffee &nbsp;+&nbsp; <strong>$' + P.donation + ' to ' + C.short + '</strong>';
+setAll('.js-price', P.price);
+setAll('.js-coffee-share', P.coffeeShare);
+setAll('.js-donation', P.donation);
+
+$('js-step-limit').textContent    = 'Choose any open month on the board above. Up to ' + P.perCustomerLimit + ' bags per person per month, so everyone gets a fair shot.';
+$('js-step-shipping').textContent = '$' + P.shipping + ' flat shipping in Florida — free on ' + P.freeShippingBags + '+ bags.';
+
+// ── Open months board ───────────────────────────────────────────────────────
+$('js-board-note').textContent = 'We roast about ' + capacity + ' bags a month today and are working toward 40. Each month stays open until it\'s fully reserved — take your time.';
+
+$('js-batches').innerHTML = B.length ? B.map((b,i)=>{
+  const left = Math.max(b.capacity - b.claimed, 0);
+  const full = left === 0;
+  const isNext = DROP_CONFIG.nextOpen === b;
+  const pct = Math.min(100, Math.round(b.claimed / b.capacity * 100));
+  return `
+    <div class="batch-card rv${i>0?' d'+Math.min(i,4):''}${full?' is-full':''}${isNext?' is-next':''}">
+      <div class="batch-top">
+        <span class="archive-card-num">Roast #${b.number}</span>
+        ${isNext?'<span class="batch-tag">Next to roast</span>':''}
+      </div>
+      <div class="batch-month">${b.month}</div>
+      <div class="batch-coffee">${b.coffee || 'Roaster\'s choice — revealed about two weeks before roast'}</div>
+      <ul class="batch-meta">
+        <li><span>Roasts</span><strong>${b.roastWeek}</strong></li>
+        <li><span>Ships</span><strong>Within 48 hrs of roast</strong></li>
+      </ul>
+      <div class="batch-bar" role="progressbar" aria-valuemin="0" aria-valuemax="${b.capacity}" aria-valuenow="${b.claimed}" aria-label="${b.claimed} of ${b.capacity} bags reserved"><span style="width:${pct}%"></span></div>
+      <p class="batch-left">${full ? 'Fully reserved' : left + ' of ' + b.capacity + ' bags left'}</p>
+      ${full
+        ? '<span class="batch-full">This month is full — pick another</span>'
+        : `<a href="${b.shopifyUrl}" class="drop-cta-btn batch-cta">Reserve a Bag &rarr;</a>`}
+    </div>`;
+}).join('') : '<div class="archive-empty">New months are being scheduled. Join the newsletter to hear when they open.</div>';
+
+// ── Giving split + ledger ───────────────────────────────────────────────────
+const coffeePct = Math.round(P.coffeeShare / P.price * 100);
+$('js-split-bar').setAttribute('aria-label', '$' + P.coffeeShare + ' of each $' + P.price + ' bag covers the coffee; $' + P.donation + ' goes to ' + C.name);
+$('js-split-bar').innerHTML =
+  `<span class="split-coffee" style="width:${coffeePct}%">$${P.coffeeShare}</span><span class="split-give" style="width:${100-coffeePct}%">$${P.donation}</span>`;
+document.querySelectorAll('.js-charity-link').forEach(a => { a.href = C.url; a.textContent = C.name; });
+$('js-charity-desc').textContent = 'A no-kill rescue in ' + C.town + ' that takes in dogs from Palm Beach County Animal Control. That\'s 1 in every ' + Math.round(P.price / P.donation) + ' dollars. Everyday Collection bags give $' + P.everydayDonation + ' each, too.';
+
+const L = DROP_CONFIG.ledger;
+if(L.length){
+  const total = L.reduce((s,r)=>s + r.donated, 0);
+  $('js-ledger-note').textContent = 'We pay ' + C.short + ' every quarter and post the receipt here. $' + total.toLocaleString() + ' given so far.';
+  $('js-ledger').innerHTML =
+    '<thead><tr><th>Quarter</th><th>Artisan bags</th><th>Everyday bags</th><th>Donated</th><th>Paid</th><th>Receipt</th></tr></thead><tbody>' +
+    L.map(r=>`<tr><td>${r.period}</td><td>${r.artisanBags} × $${P.donation}</td><td>${r.everydayBags} × $${P.everydayDonation}</td><td><strong>$${r.donated.toLocaleString()}</strong></td><td>${r.paidOn}</td><td>${r.receiptUrl?`<a href="${r.receiptUrl}" class="drop-fl-link" target="_blank" rel="noopener">View</a>`:'—'}</td></tr>`).join('') +
+    '</tbody>';
+} else {
+  $('js-ledger-note').textContent = 'We pay ' + C.short + ' every quarter and post the bag count, amount and receipt here. The first report publishes after the first allocation quarter closes.';
+  $('js-ledger').remove();
 }
 
-// ── Populate from config ────────────────────────────────────────────────────
-const D = DROP_CONFIG.current;
-
-// Hero
-document.getElementById('js-bg-num').textContent     = D.number;
-document.getElementById('js-num-tag').textContent    = 'Drop #' + D.number;
-document.getElementById('js-hero-name').innerHTML    = D.name + '<br><em>' + D.nameAccent + '</em>';
-document.getElementById('js-roast-line').textContent = D.subtitle;
-document.getElementById('js-bag-line').textContent   = D.bagCount + ' bags · first come, first served';
-document.getElementById('js-opens-date').textContent = formatDate(D.opens);
-document.getElementById('js-buy-link').href          = D.shopifyUrl;
-document.getElementById('js-sold-badge').textContent = 'Drop #' + D.number + ' — Sold Out';
-
-// Hero dog portrait
-if(D.illustrationSrc){
-  const heroSection = document.querySelector('.drop-hero');
-  document.getElementById('js-hero-dog-img').src = D.illustrationSrc;
-  document.getElementById('js-hero-dog-img').alt = D.dogName + ' — the Good Dog behind Drop #' + D.number;
-  document.getElementById('js-hero-dog-label').textContent = D.dogName;
-  heroSection.classList.add('has-dog');
-}
-
-// Stats panel
-document.getElementById('js-stats-heading').innerHTML   = 'Drop #' + D.number + '<br>At a Glance';
+// ── Roast profile ───────────────────────────────────────────────────────────
+$('js-profile-label').textContent = DROP_CONFIG.profileLabel;
+$('js-stats-heading').innerHTML   = 'Roast #' + D.number + '<br>' + D.name + ' <em>' + D.nameAccent + '</em>';
+$('js-notes-title').innerHTML     = 'What\'s in<br><em>the cup.</em>';
 const statRows = [
   ['Origin',      D.origin],
   ['Region',      D.region],
@@ -263,87 +354,43 @@ const statRows = [
   ['Process',     D.process],
   ['Roast Level', D.roastLevel],
   ['Roast Date',  D.roastDate],
-  ['Bag Size',    D.bagSize],
-  ['Price',       D.price],
+  ['Bag Size',    P.bagSize],
+  ['Price',       '$' + P.price + ' ($' + P.donation + ' to ' + C.short + ')'],
 ];
-document.getElementById('js-stat-list').innerHTML = statRows.map(([k,v])=>
+$('js-stat-list').innerHTML = statRows.map(([k,v])=>
   `<li><span class="drop-stat-key">${k}</span><span class="drop-stat-val">${v}</span></li>`
 ).join('');
-
-// Tasting notes
-document.getElementById('js-tasting-notes').innerHTML = D.tastingNotes.map(n=>
-  `<span class="drop-tasting-note">${n}</span>`
-).join('');
-
-// Roaster notes
-document.getElementById('js-roaster-notes').innerHTML = D.roasterNotes.map(p=>
-  `<p>${p}</p>`
-).join('');
+$('js-tasting-notes').innerHTML = D.tastingNotes.map(t=>`<span class="drop-tasting-note">${t}</span>`).join('');
+$('js-roaster-notes').innerHTML = D.roasterNotes.map(p=>`<p>${p}</p>`).join('');
 
 // Story
-const dogEl = document.getElementById('js-story-dog');
-dogEl.innerHTML = 'Meet <em>' + D.dogName + '.</em>';
-document.getElementById('js-story-quote').textContent  = D.storyQuote;
-document.getElementById('js-story-author').textContent = '— ' + D.storyAuthor + ', ' + D.storyCity;
+$('js-story-dog').innerHTML        = 'Meet <em>' + D.dogName + '.</em>';
+$('js-story-quote').textContent    = D.storyQuote;
+$('js-story-author').textContent   = '— ' + D.storyAuthor + ', ' + D.storyCity;
 if(D.illustrationSrc){
-  document.getElementById('js-story-illus').innerHTML =
-    `<img src="${D.illustrationSrc}" alt="${D.dogName} — the Good Dog behind Drop #${D.number}" loading="lazy">`;
+  $('js-story-illus').innerHTML =
+    `<img src="${D.illustrationSrc}" alt="${D.dogName} — the Good Dog behind Roast #${D.number}" loading="lazy">`;
 }
 
-// Archive
-const archiveEl = document.getElementById('js-archive');
-if(DROP_CONFIG.archive.length === 0){
-  archiveEl.innerHTML = '<div class="archive-empty rv">Drops will appear here after they sell out.<br>You\'ll want to be early.</div>';
-} else {
-  archiveEl.innerHTML = DROP_CONFIG.archive.map((a,i)=>`
-    <div class="archive-card rv${i>0?' d'+Math.min(i,4):''}">
-      <div class="archive-card-num">Drop #${a.number}</div>
-      <div class="archive-card-name">${a.name}</div>
-      <div class="archive-card-sub">Palm Beach County · ${a.date}</div>
-      <div class="archive-card-tags">${a.tags.map(t=>`<span class="archive-card-tag">${t}</span>`).join('')}</div>
-      <div class="archive-card-sub" style="margin-bottom:1rem;font-style:italic">${a.tastingNotes}</div>
-      <span class="archive-sold">Sold Out</span>
-    </div>`
-  ).join('');
-  document.querySelectorAll('.archive-card.rv').forEach(el=>obs.observe(el));
-}
+// ── Archive ─────────────────────────────────────────────────────────────────
+const A = DROP_CONFIG.archive;
+$('js-archive').innerHTML = A.length ? A.map((a,i)=>`
+  <div class="archive-card rv${i>0?' d'+Math.min(i,4):''}">
+    <div class="archive-card-num">Roast #${a.number}</div>
+    <div class="archive-card-name">${a.name}</div>
+    <div class="archive-card-sub">Palm Beach County · ${a.date}${a.dogName?' · '+a.dogName+'\'s roast':''}</div>
+    <div class="archive-card-tags">${a.tags.map(t=>`<span class="archive-card-tag">${t}</span>`).join('')}</div>
+    <div class="archive-card-sub" style="margin-bottom:1rem;font-style:italic">${a.tastingNotes}</div>
+    <span class="archive-sold">Shipped</span>
+  </div>`
+).join('') : '<div class="archive-empty">Past roasts will appear here once they ship.</div>';
 
-// ── Drop state machine (3 states) ──────────────────────────────────────────
-function setDropState(){
-  const now = new Date();
-  const countdown = document.getElementById('state-countdown');
-  const live      = document.getElementById('state-live');
-  const sold      = document.getElementById('state-sold');
-
-  if(now >= D.opens && now <= D.closes){
-    countdown.style.display='none'; live.style.display='flex'; sold.style.display='none';
-  } else if(now > D.closes){
-    countdown.style.display='none'; live.style.display='none'; sold.style.display='flex';
-  } else {
-    countdown.style.display='block'; live.style.display='none'; sold.style.display='none';
-    startCountdown();
-  }
-}
-
-function startCountdown(){
-  function tick(){
-    const diff = D.opens - new Date();
-    if(diff <= 0){ setDropState(); return; }
-    document.getElementById('cd-days').textContent  = pad(Math.floor(diff/86400000));
-    document.getElementById('cd-hours').textContent = pad(Math.floor((diff%86400000)/3600000));
-    document.getElementById('cd-mins').textContent  = pad(Math.floor((diff%3600000)/60000));
-    document.getElementById('cd-secs').textContent  = pad(Math.floor((diff%60000)/1000));
-  }
-  tick();
-  setInterval(tick, 1000);
-}
-
-setDropState();
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
 
 // Story form — character counter + Netlify submission
 (function(){
-  const ta=document.getElementById('story-text');
-  const counter=document.getElementById('story-char-count');
+  const ta=$('story-text');
+  const counter=$('story-char-count');
   if(ta&&counter){
     ta.addEventListener('input',function(){
       const len=this.value.length;
@@ -360,7 +407,7 @@ function handleStoryForm(e){
   fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(new FormData(form)).toString()})
     .then(()=>{
       form.style.display='none';
-      const success=document.getElementById('story-success');
+      const success=$('story-success');
       success.style.display='block';
       success.classList.add('v');
     })

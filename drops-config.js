@@ -1,36 +1,84 @@
 /**
- * GOOD DOG ROASTERS — DROP CONFIG
- * Update this file for every new drop. The drops page reads from here automatically.
+ * GOOD DOG ROASTERS — ARTISAN ALLOCATION CONFIG
+ * Single source of truth for the Artisan page (drops.html) and the homepage widget.
  * ─────────────────────────────────────────────────────────────────────────────
  *
- * HOW THE DROP SYSTEM WORKS:
+ * HOW ALLOCATIONS WORK:
  *
- * 1. Set opens/closes dates below and push — countdown starts automatically.
- * 2. Create the Shopify product as a Draft, copy the URL into shopifyUrl, push.
- * 3. Send newsletter so subscribers know first.
- * 4. At opens time: flip Shopify product to Active. First 25 buyers win.
- *    Shopify closes it automatically when inventory hits zero.
- * 5. At closes time (or when sold out): flip product back to Draft.
- * 6. Move current drop data into archive below, start fresh for next drop.
+ * 1. Shopify has ONE product, "Artisan Allocation", with one variant per roast
+ *    month (e.g. "November 2026 Roast"). Each variant's inventory = capacity.
+ *    Paste each variant's URL (…/products/artisan-allocation?variant=123) into
+ *    that batch's shopifyUrl below.
+ * 2. Keep ~3 months open at a time. When a month ships, move it to `archive`
+ *    and add the next month to the end of `batches`.
+ * 3. Update `claimed` as orders come in (Shopify → Products → inventory sold).
+ *    A batch with claimed >= capacity shows as fully allocated automatically.
+ * 4. When you pick the green coffee for a month, set that batch's `coffee`
+ *    and replace `profile` below with its tasting profile.
+ * 5. Every quarter: pay Barky Pines, then add a row to `ledger`.
  */
 
 const DROP_CONFIG = {
 
-  // ── CURRENT DROP ──────────────────────────────────────────────────────────
-  current: {
+  // ── PRICING & GIVING ─────────────────────────────────────────────────────
+  pricing: {
+    price:            28,     // per 12 oz bag
+    coffeeShare:      23,     // price minus donation — shown as the split
+    donation:         5,      // per Artisan bag → charity
+    everydayDonation: 1,      // per Everyday (Dripshipper) bag → charity
+    bagSize:          '12 oz / 340g',
+    shipping:         6,      // flat rate, Florida only (USPS Ground Advantage)
+    freeShippingBags: 2,      // free shipping at this many bags or more
+    perCustomerLimit: 2,      // max bags per person per month
+  },
+
+  charity: {
+    name:  'Barky Pines Animal Rescue & Sanctuary',
+    short: 'Barky Pines',
+    town:  'Loxahatchee, FL',
+    url:   'https://barkypinesanimalrescue.com/',
+  },
+
+  // ── OPEN MONTHS ──────────────────────────────────────────────────────────
+  // coffee: null shows "Roaster's choice — revealed ~2 weeks before roast"
+  batches: [
+    {
+      number:     '02',
+      month:      'November 2026',
+      roastWeek:  'Week of Nov 16',          // ← confirm
+      capacity:   20,
+      claimed:    0,
+      coffee:     null,
+      shopifyUrl: '#',                       // ← paste variant URL
+    },
+    {
+      number:     '03',
+      month:      'December 2026',
+      roastWeek:  'Week of Dec 7',           // ← confirm (early, to beat holiday mail)
+      capacity:   20,
+      claimed:    0,
+      coffee:     null,
+      shopifyUrl: '#',
+    },
+    {
+      number:     '04',
+      month:      'January 2027',
+      roastWeek:  'Week of Jan 11',          // ← confirm
+      capacity:   20,
+      claimed:    0,
+      coffee:     null,
+      shopifyUrl: '#',
+    },
+  ],
+
+  // ── FEATURED PROFILE ─────────────────────────────────────────────────────
+  // Shows the most recent roast until the next coffee is announced.
+  profileLabel: 'Most Recent Roast',
+  profile: {
     number:     '01',
     name:       'Ethiopia',
-    nameAccent: 'Bensa Kokose',                // shown in italic gold
-    subtitle:   'Hand Roasted · Palm Beach County · Small Batch',
-    bagCount:   25,                            // shown on countdown ("25 bags · opens...")
+    nameAccent: 'Bensa Kokose',
 
-    // ── DATES ──────────────────────────────────────────────────────────────
-    opens:  new Date('2026-05-15T10:00:00'),   // when Shopify product goes live
-    closes: new Date('2026-05-15T23:59:59'),   // when drop closes (or sells out first)
-
-    shopifyUrl: '#', // ← paste Shopify product URL here before opens time
-
-    // Coffee Stats
     origin:     'Ethiopia',
     region:     'Bensa, Sidama',
     farm:       'Kokose Kebele Smallholders',
@@ -39,10 +87,7 @@ const DROP_CONFIG = {
     process:    'Natural (Dry Process)',
     roastLevel: 'Light-Medium',
     roastDate:  'May 15, 2026',
-    bagSize:    '12 oz / 340g',
-    price:      '$25',                  // ← set before launch
 
-    // Tasting Notes (shown as tags)
     tastingNotes: [
       'Cherry Cordial',
       'Dried Blueberry',
@@ -64,17 +109,32 @@ const DROP_CONFIG = {
     illustrationSrc: 'assets/01_spencer_transparent background.png',
   },
 
-  // ── ARCHIVE ───────────────────────────────────────────────────────────────
-  // When a drop closes, copy current values here and start fresh above.
-  archive: [
+  // ── GIVING LEDGER ────────────────────────────────────────────────────────
+  // One row per quarter, added after the donation is paid.
+  ledger: [
     // {
-    //   number:      '01',
-    //   name:        'Ethiopia Bensa Kokose',
-    //   date:        'May 2026',
-    //   tags:        ['Natural', 'Light-Medium'],
-    //   tastingNotes:'Cherry Cordial · Dried Blueberry · Raspberry Truffle',
-    //   dogName:     'Spencer',
+    //   period:       'Q4 2026',
+    //   artisanBags:  40,
+    //   everydayBags: 25,
+    //   donated:      225,                 // artisanBags×5 + everydayBags×1
+    //   paidOn:       'Jan 8, 2027',
+    //   receiptUrl:   'assets/receipts/2026-q4.pdf',
     // },
   ],
 
+  // ── ARCHIVE ──────────────────────────────────────────────────────────────
+  archive: [
+    {
+      number:       '01',
+      name:         'Ethiopia Bensa Kokose',
+      date:         'May 2026',
+      tags:         ['Natural', 'Light-Medium'],
+      tastingNotes: 'Cherry Cordial · Dried Blueberry · Raspberry Truffle',
+      dogName:      'Spencer',
+    },
+  ],
+
 };
+
+// Next batch with bags left (or null) — used by drops.html and the homepage widget.
+DROP_CONFIG.nextOpen = DROP_CONFIG.batches.find(b => b.claimed < b.capacity) || null;
