@@ -37,7 +37,7 @@
 <main id="main">
 
 <!-- ═══ HERO ═══ -->
-<section class="drop-hero">
+<section class="drop-hero has-art">
   <div class="drop-hero-inner">
   <div class="drop-hero-content">
     <p class="s-label drop-label">Artisan Allocation</p>
@@ -56,6 +56,7 @@
       Florida delivery only — made in a cottage food operation. <a href="#cottage-food" class="drop-fl-link">Why?</a>
     </p>
   </div>
+  <div class="drop-hero-art" id="js-hero-art"></div>
   </div>
 </section>
 
@@ -267,6 +268,7 @@
 
 <!-- Load config first, then page logic -->
 <script src="drops-config.js"></script>
+<script src="bag-graphic.js"></script>
 <script>
 const n=document.getElementById('nav');
 window.addEventListener('scroll',()=>n.classList.toggle('scrolled',window.scrollY>50),{passive:true});
@@ -294,6 +296,15 @@ $('js-step-shipping').textContent = '$' + P.shipping + ' flat shipping in Florid
 
 // ── Open months board ───────────────────────────────────────────────────────
 $('js-board-note').textContent = 'We roast about ' + capacity + ' bags a month today and are working toward 40. Each month stays open until it\'s fully reserved — take your time.';
+
+// Hero bag art — label shows the next month with bags left
+function renderHeroArt(){
+  const b = DROP_CONFIG.nextOpen;
+  $('js-hero-art').innerHTML = b
+    ? bagGraphic({ number: b.number, month: b.month, stamp: '$' + P.donation })
+    : bagGraphic({ title: 'Monthly Roast', subtitle: 'New months soon', stamp: '$' + P.donation });
+}
+renderHeroArt();
 
 function renderBatches(){
 $('js-batches').innerHTML = B.length ? B.map((b,i)=>{
@@ -327,6 +338,7 @@ DROP_CONFIG.refreshLive().then(ok => {
   if(!ok) return;
   const shown = document.querySelector('#js-batches .rv.v');   // already revealed? don't replay the animation
   renderBatches();
+  renderHeroArt();
   if(shown) document.querySelectorAll('#js-batches .rv').forEach(el=>el.classList.add('v'));
 });
 

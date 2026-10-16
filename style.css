@@ -270,6 +270,11 @@ footer{background:var(--espresso);color:rgba(246,243,241,.65);padding:6rem 3.5re
 .drop-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(121,155,142,.08) 0%,transparent 60%);pointer-events:none}
 .drop-hero-inner{display:flex;align-items:center;justify-content:center;gap:5rem;max-width:1160px;width:100%}
 .drop-hero-content{position:relative;z-index:2;max-width:700px;display:flex;flex-direction:column;align-items:center}
+.drop-hero-art{display:none}
+.drop-hero.has-art .drop-hero-art{display:block;width:min(420px,40vw);flex-shrink:0;position:relative;z-index:2;animation:bagfloat 7s ease-in-out infinite}
+.drop-hero-art svg{width:100%;height:auto;display:block;filter:drop-shadow(0 18px 30px rgba(44,24,16,.10))}
+.drop-hero.has-art .drop-hero-content{text-align:left;align-items:flex-start;max-width:560px}
+@keyframes bagfloat{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-10px) rotate(1deg)}}
 .drop-label{color:var(--sage-deep);background:rgba(61,90,78,.06);border:1px solid rgba(61,90,78,.12)}
 .drop-hero-name{font-family:var(--display);font-size:clamp(3rem,7vw,5.5rem);font-weight:800;color:var(--espresso);line-height:1.04;letter-spacing:-.04em;margin:.6rem 0 1rem}
 .drop-hero-name em{font-style:italic;font-weight:400;color:var(--gold-muted)}
@@ -406,7 +411,7 @@ footer{background:var(--espresso);color:rgba(246,243,241,.65);padding:6rem 3.5re
 .drop-notify .s-label{color:var(--espresso);background:rgba(44,24,16,.06);border:1px solid rgba(44,24,16,.08)}
 .drop-notify h2{font-family:var(--display);font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;color:var(--espresso);letter-spacing:-.02em;margin:.5rem 0 1rem}
 .drop-notify p{font-size:.92rem;line-height:1.8;color:var(--brown);max-width:440px;margin:0 auto 2.5rem}
-@media(max-width:900px){.drop-profile-inner{grid-template-columns:1fr;gap:4rem}.drop-stats-panel{position:static}.drop-archive-grid,.batch-grid,.alloc-steps{grid-template-columns:1fr 1fr}.split-legend{grid-template-columns:1fr;gap:1.5rem}}
+@media(max-width:900px){.drop-hero.has-art .drop-hero-inner{flex-direction:column-reverse;gap:2rem}.drop-hero.has-art .drop-hero-content{text-align:center;align-items:center}.drop-hero.has-art .drop-hero-art{width:min(300px,75vw)}.drop-hero{padding-top:7rem}.drop-profile-inner{grid-template-columns:1fr;gap:4rem}.drop-stats-panel{position:static}.drop-archive-grid,.batch-grid,.alloc-steps{grid-template-columns:1fr 1fr}.split-legend{grid-template-columns:1fr;gap:1.5rem}}
 @media(max-width:600px){.drop-archive-grid,.batch-grid,.alloc-steps{grid-template-columns:1fr}.drop-profile,.alloc-board,.alloc-how,.alloc-giving{padding:5rem 1.5rem}.ledger{padding:1.6rem}.cottage-notice-inner{flex-direction:column;gap:.8rem}}
 
 /* ═══ MEET MOJO ═══ */
