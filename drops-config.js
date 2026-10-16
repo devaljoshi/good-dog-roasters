@@ -15,7 +15,7 @@
  *    A batch with claimed >= capacity shows as fully allocated automatically.
  * 4. When you pick the green coffee for a month, set that batch's `coffee`
  *    and replace `profile` below with its tasting profile.
- * 5. Every quarter: pay Barky Pines, then add a row to `ledger`.
+ * 5. Every quarter: pay the rescue partner, then add a row to `ledger`.
  */
 
 const DROP_CONFIG = {
@@ -32,11 +32,16 @@ const DROP_CONFIG = {
     perCustomerLimit: 2,      // max bags per person per month
   },
 
+  // Current rescue partner. This file is public — don't fill in a partner's
+  // details until they've approved in writing. While announced is false the
+  // site says "a local Palm Beach County dog rescue" everywhere.
+  // When rotating partners: give 60 days' notice, then swap these values.
   charity: {
-    name:  'Barky Pines Animal Rescue & Sanctuary',
-    short: 'Barky Pines',
-    town:  'Loxahatchee, FL',
-    url:   'https://barkypinesanimalrescue.com/',
+    announced: false,
+    name:  '',     // full legal name
+    short: '',     // short name for tight spots
+    url:   '',     // their website
+    about: '',     // one sentence about them
   },
 
   // ── OPEN MONTHS ──────────────────────────────────────────────────────────
@@ -49,7 +54,7 @@ const DROP_CONFIG = {
       capacity:   20,
       claimed:    0,
       coffee:     null,
-      shopifyUrl: '#',                       // ← paste variant URL
+      shopifyUrl: 'https://good-dog-roasters.myshopify.com/products/artisan-allocation?variant=67713405550666',
     },
     {
       number:     '03',
@@ -58,7 +63,7 @@ const DROP_CONFIG = {
       capacity:   20,
       claimed:    0,
       coffee:     null,
-      shopifyUrl: '#',
+      shopifyUrl: 'https://good-dog-roasters.myshopify.com/products/artisan-allocation?variant=67713405583434',
     },
     {
       number:     '04',
@@ -67,7 +72,7 @@ const DROP_CONFIG = {
       capacity:   20,
       claimed:    0,
       coffee:     null,
-      shopifyUrl: '#',
+      shopifyUrl: 'https://good-dog-roasters.myshopify.com/products/artisan-allocation?variant=67713405616202',
     },
   ],
 
@@ -114,6 +119,7 @@ const DROP_CONFIG = {
   ledger: [
     // {
     //   period:       'Q4 2026',
+    //   recipient:    'Partner legal name',
     //   artisanBags:  40,
     //   everydayBags: 25,
     //   donated:      225,                 // artisanBags×5 + everydayBags×1
@@ -135,6 +141,16 @@ const DROP_CONFIG = {
   ],
 
 };
+
+// What the site actually displays for the partner (generic until announced).
+DROP_CONFIG.partner = DROP_CONFIG.charity.announced
+  ? DROP_CONFIG.charity
+  : {
+      name:  'a local Palm Beach County dog rescue',
+      short: 'local dog rescue',
+      url:   null,
+      about: 'We\'re finalizing our first rescue partner — a 501(c)(3) dog rescue here in Palm Beach County. We\'ll name them here as soon as they\'ve signed off, and every $5 collected before then goes to them.',
+    };
 
 // Next batch with bags left (or null) — used by drops.html and the homepage widget.
 DROP_CONFIG.nextOpen = DROP_CONFIG.batches.find(b => b.claimed < b.capacity) || null;

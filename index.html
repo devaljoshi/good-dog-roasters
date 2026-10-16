@@ -94,7 +94,7 @@
     <img src="assets/Good Dog Graphic.svg" alt="Good Dog Roasters" class="hero-logo">
     <h1>Good Dog<br><em>Roasters</em></h1>
     <p class="hero-tag">Be Good. Do Good. Taste Good.</p>
-    <p class="hero-sub">Artisan roasts made by hand in Palm Beach County. Curated everyday coffees sourced for quality. $5 from every Artisan bag goes to Barky Pines Animal Rescue.</p>
+    <p class="hero-sub">Artisan roasts made by hand in Palm Beach County. Curated everyday coffees sourced for quality. $5 from every Artisan bag goes to <span class="js-partner-name">local dog rescue</span>.</p>
     <div class="hero-btns">
       <a href="drops.html" class="btn btn-dark">Reserve Artisan Coffee &rarr;</a>
       <a href="https://good-dog-roasters.myshopify.com" target="_blank" class="btn btn-outline-light">Shop Coffee</a>
@@ -159,7 +159,7 @@
     <p class="s-body">Watch a dog long enough and you'll notice something. They're never anywhere but here. No yesterday, no tomorrow — just the warm air, the people around them, and pure unguarded joy in the moment.</p>
     <p class="s-body">We think your morning cup should feel the same way. Not a fuel. Not a habit you autopilot through. A deliberate pause — the kind that makes you put your phone down, breathe in the smell before the first sip, and actually be somewhere.</p>
     <p class="s-body">Our artisan roasts are made by hand here in Palm Beach County — small batches, close attention, shipped within 48 hours. Our everyday collection is curated with the same standard: if it doesn't meet our bar, it doesn't carry our name.</p>
-    <p class="s-body">Good Dog Roasters is named after Mojo — a Yorkie, the original good dog, and the reason this brand exists. $5 from every Artisan bag and $1 from every Everyday bag goes to Barky Pines Animal Rescue &amp; Sanctuary in Loxahatchee. Because good dogs deserve good humans.</p>
+    <p class="s-body">Good Dog Roasters is named after Mojo — a Yorkie, the original good dog, and the reason this brand exists. $5 from every Artisan bag and $1 from every Everyday bag goes to <span class="js-partner-name">a local Palm Beach County dog rescue</span>. Because good dogs deserve good humans.</p>
     <div class="stats">
       <div><div class="stat-n">PBC</div><div class="stat-l">Artisan Roasted</div></div>
       <div><div class="stat-n">48hr</div><div class="stat-l">Artisan Ship Time</div></div>
@@ -271,7 +271,7 @@
   <div class="rv">
     <p class="s-label">Sip Good, Do Good</p>
     <h2 class="giving-headline">Every Bag Gives Back</h2>
-    <p class="giving-body">Our rescue partner is <a href="https://barkypinesanimalrescue.com/" target="_blank" rel="noopener" class="giving-link" style="margin:0">Barky Pines Animal Rescue &amp; Sanctuary</a> — a no-kill rescue in Loxahatchee that takes in dogs from Palm Beach County Animal Control. We built Good Dog Roasters because of dogs like Mojo, so giving back isn't an afterthought. No vague "portion of proceeds": a fixed amount from every bag, paid quarterly, with the receipts posted.</p>
+    <p class="giving-body"><span id="giving-partner">Our rescue partner is a 501(c)(3) dog rescue here in Palm Beach County — we'll name them as soon as they've signed off.</span> We built Good Dog Roasters because of dogs like Mojo, so giving back isn't an afterthought. No vague "portion of proceeds": a fixed amount from every bag, paid quarterly, with the receipts posted.</p>
   </div>
   <div class="giving-stats">
     <div class="giving-stat rv"><span class="giving-num">$5</span><span class="giving-stat-label">Every Artisan bag</span></div>
@@ -330,6 +330,15 @@ function toggleHeroVideo(){
 const obs=new IntersectionObserver(e=>{e.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v')})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
 
+// Rescue partner name — generic until announced in drops-config.js
+(function(){
+  const C = DROP_CONFIG.partner;
+  if(!C.url) return;
+  document.querySelectorAll('.js-partner-name').forEach(el => el.textContent = C.name);
+  document.getElementById('giving-partner').innerHTML =
+    'Our rescue partner is <a href="' + C.url + '" target="_blank" rel="noopener" class="giving-link" style="margin:0">' + C.name + '</a> — ' + C.about.charAt(0).toLowerCase() + C.about.slice(1).replace(/\.$/, '.');
+})();
+
 // Homepage allocation widget — shows the next month with bags left
 (function(){
   const b = DROP_CONFIG.nextOpen;
@@ -339,7 +348,7 @@ document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
   document.getElementById('hw-month').textContent = b.month;
   document.getElementById('hw-bar-fill').style.width = Math.round(b.claimed / b.capacity * 100) + '%';
   document.getElementById('hw-left').textContent = left + ' of ' + b.capacity + ' bags left · roasts ' + b.roastWeek.replace(/^Week of/, 'the week of');
-  document.getElementById('hw-price').textContent = '$' + P.price + ' · 12 oz · $' + P.donation + ' to ' + DROP_CONFIG.charity.short;
+  document.getElementById('hw-price').textContent = '$' + P.price + ' · 12 oz · $' + P.donation + ' to ' + DROP_CONFIG.partner.short;
   document.getElementById('hw-open').hidden = false;
 })();
 

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Artisan Allocation — Good Dog Roasters</title>
-<meta name="description" content="Reserve a bag of small-batch coffee hand-roasted in Palm Beach County, FL. Pick a month, pay once, and it's yours — roasted that week, shipped within 48 hours. $5 from every bag goes to Barky Pines Animal Rescue.">
+<meta name="description" content="Reserve a bag of small-batch coffee hand-roasted in Palm Beach County, FL. Pick a month, pay once, and it's yours — roasted that week, shipped within 48 hours. $5 from every bag goes to local dog rescue.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://good-dog-roasters.com/drops.html">
 
@@ -117,7 +117,7 @@
         <p>Green coffee, roasting, the bag and label, card fees, and keeping a one-person roastery running.</p>
       </div>
       <div>
-        <strong>$<span class="js-donation"></span> — <a class="js-charity-link drop-fl-link" target="_blank" rel="noopener"></a></strong>
+        <strong>$<span class="js-donation"></span> — <span id="js-charity-name"></span></strong>
         <p id="js-charity-desc"></p>
       </div>
     </div>
@@ -273,7 +273,7 @@ window.addEventListener('scroll',()=>n.classList.toggle('scrolled',window.scroll
 const obs=new IntersectionObserver(e=>{e.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v')})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
 
 const P = DROP_CONFIG.pricing;
-const C = DROP_CONFIG.charity;
+const C = DROP_CONFIG.partner;
 const B = DROP_CONFIG.batches;
 const D = DROP_CONFIG.profile;
 const $ = id => document.getElementById(id);
@@ -325,19 +325,21 @@ const coffeePct = Math.round(P.coffeeShare / P.price * 100);
 $('js-split-bar').setAttribute('aria-label', '$' + P.coffeeShare + ' of each $' + P.price + ' bag covers the coffee; $' + P.donation + ' goes to ' + C.name);
 $('js-split-bar').innerHTML =
   `<span class="split-coffee" style="width:${coffeePct}%">$${P.coffeeShare}</span><span class="split-give" style="width:${100-coffeePct}%">$${P.donation}</span>`;
-document.querySelectorAll('.js-charity-link').forEach(a => { a.href = C.url; a.textContent = C.name; });
-$('js-charity-desc').textContent = 'A no-kill rescue in ' + C.town + ' that takes in dogs from Palm Beach County Animal Control. That\'s 1 in every ' + Math.round(P.price / P.donation) + ' dollars. Everyday Collection bags give $' + P.everydayDonation + ' each, too.';
+$('js-charity-name').innerHTML = C.url
+  ? `<a href="${C.url}" class="drop-fl-link" target="_blank" rel="noopener">${C.name}</a>`
+  : C.name.charAt(0).toUpperCase() + C.name.slice(1);
+$('js-charity-desc').textContent = C.about + ' That\'s 1 in every ' + Math.round(P.price / P.donation) + ' dollars. Everyday Collection bags give $' + P.everydayDonation + ' each, too.';
 
 const L = DROP_CONFIG.ledger;
 if(L.length){
   const total = L.reduce((s,r)=>s + r.donated, 0);
-  $('js-ledger-note').textContent = 'We pay ' + C.short + ' every quarter and post the receipt here. $' + total.toLocaleString() + ' given so far.';
+  $('js-ledger-note').textContent = 'We pay our rescue partner every quarter and post the receipt here. $' + total.toLocaleString() + ' given so far.';
   $('js-ledger').innerHTML =
-    '<thead><tr><th>Quarter</th><th>Artisan bags</th><th>Everyday bags</th><th>Donated</th><th>Paid</th><th>Receipt</th></tr></thead><tbody>' +
-    L.map(r=>`<tr><td>${r.period}</td><td>${r.artisanBags} × $${P.donation}</td><td>${r.everydayBags} × $${P.everydayDonation}</td><td><strong>$${r.donated.toLocaleString()}</strong></td><td>${r.paidOn}</td><td>${r.receiptUrl?`<a href="${r.receiptUrl}" class="drop-fl-link" target="_blank" rel="noopener">View</a>`:'—'}</td></tr>`).join('') +
+    '<thead><tr><th>Quarter</th><th>Paid to</th><th>Artisan bags</th><th>Everyday bags</th><th>Donated</th><th>Paid</th><th>Receipt</th></tr></thead><tbody>' +
+    L.map(r=>`<tr><td>${r.period}</td><td>${r.recipient}</td><td>${r.artisanBags} × $${P.donation}</td><td>${r.everydayBags} × $${P.everydayDonation}</td><td><strong>$${r.donated.toLocaleString()}</strong></td><td>${r.paidOn}</td><td>${r.receiptUrl?`<a href="${r.receiptUrl}" class="drop-fl-link" target="_blank" rel="noopener">View</a>`:'—'}</td></tr>`).join('') +
     '</tbody>';
 } else {
-  $('js-ledger-note').textContent = 'We pay ' + C.short + ' every quarter and post the bag count, amount and receipt here. The first report publishes after the first allocation quarter closes.';
+  $('js-ledger-note').textContent = 'We pay our rescue partner every quarter and post who was paid, the bag count, the amount and the receipt here. The first report publishes after the first allocation quarter closes.';
   $('js-ledger').remove();
 }
 
